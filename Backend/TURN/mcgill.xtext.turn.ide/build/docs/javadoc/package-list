@@ -1,0 +1,11 @@
+mcgill.xtext.turn.codelens
+mcgill.xtext.turn.extensions
+mcgill.xtext.turn.ide
+mcgill.xtext.turn.ide.codeAction
+mcgill.xtext.turn.ide.completion
+mcgill.xtext.turn.ide.formatting
+mcgill.xtext.turn.ide.rename
+mcgill.xtext.turn.ide.symbols
+org.xtext.example.mydsl.ide
+org.xtext.example.mydsl.ide.contentassist.antlr
+org.xtext.example.mydsl.ide.contentassist.antlr.internal

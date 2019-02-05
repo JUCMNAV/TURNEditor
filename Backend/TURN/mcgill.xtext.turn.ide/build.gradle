@@ -1,0 +1,14 @@
+ext.title = 'TURN Language Server'
+description = 'Generic IDE services for TURN offered via the Language Server Protocol'
+
+dependencies {
+	compile project(':mcgill.xtext.turn')
+	compile "org.eclipse.xtext:org.eclipse.xtext.ide:${versions.xtext}"
+	
+	testCompile "junit:junit:${versions.junit}"
+	testCompile "org.eclipse.xtext:org.eclipse.xtext.testing:${versions.xtext}"
+}
+
+test {
+    maxHeapSize '512m'
+}

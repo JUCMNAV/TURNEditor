@@ -1,0 +1,211 @@
+!SESSION 2019-02-03 20:25:51.412 -----------------------------------------------
+eclipse.buildId=4.8.0.I20180531-0700
+java.version=1.8.0_201
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_CA
+Framework arguments:  -product org.eclipse.epp.package.modeling.product
+Command-line arguments:  -data /home/rijul/eclipse-workspace/TURNEditor/TURN -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.modeling.product
+
+!ENTRY org.eclipse.jface 2 0 2019-02-03 20:25:58.748
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-02-03 20:25:58.748
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@27ccf818,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5f6ae1d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 12 2019-02-03 20:26:00.712
+!MESSAGE Unable to parse pattern: ‘*’. ; version: 2.0.7.v20170906-1327
+!STACK 0
+org.eclipse.epp.logging.aeri.core.util.Logs$LogTraceException
+	at org.eclipse.epp.logging.aeri.core.util.Logs$LogTraceException.newTrace(Logs.java:387)
+	at org.eclipse.epp.logging.aeri.core.util.Logs.log(Logs.java:134)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConfiguration.getIgnoredPluginMessagesPatterns(ServerConfiguration.java:333)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:168)
+	at com.google.common.util.concurrent.AbstractIdleService$DelegateService$1.run(AbstractIdleService.java:62)
+	at com.google.common.util.concurrent.Callables$4.run(Callables.java:122)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY com.yattasolutions.features.oaw 4 0 2019-02-03 20:26:10.767
+!MESSAGE Error accessing ePackage: 'http://cs.mcgill.ca/sel/core/1.0': java.lang.ClassNotFoundException: core.CorePackage cannot be found by seg.jUCMNav_7.0.0
+!STACK 0
+org.eclipse.emf.common.util.WrappedException: java.lang.ClassNotFoundException: core.CorePackage cannot be found by seg.jUCMNav_7.0.0
+	at org.eclipse.emf.ecore.plugin.RegistryReader$EPackageDescriptor.getEPackage(RegistryReader.java:298)
+	at org.eclipse.emf.ecore.impl.EPackageRegistryImpl.getEPackage(EPackageRegistryImpl.java:127)
+	at com.yattasolutions.obf.ju.k.acw(SourceFile:201)
+	at com.yattasolutions.obf.ju.k.cO(SourceFile:147)
+	at com.yattasolutions.obf.ju.k.cM(SourceFile:94)
+	at com.yattasolutions.obf.ju.a.cL(SourceFile:109)
+	at com.yattasolutions.obf.ju.k.bH(SourceFile:65)
+	at com.yattasolutions.obf.ju.a.getClassHandlerFactoryForType(SourceFile:76)
+	at com.yattasolutions.features.i.getClassHandlerFactoryForType(SourceFile:245)
+	at com.yattasolutions.features.i.getClassHandlerForType(SourceFile:341)
+	at com.yattasolutions.obf.ms.c.d(SourceFile:22)
+	at com.yattasolutions.obf.jr.g.c(SourceFile:212)
+	at com.yattasolutions.obf.jr.g.f(SourceFile:151)
+	at com.yattasolutions.obf.ms.b.getFeatureAccessModule(SourceFile:68)
+	at com.yattasolutions.obf.mj.b.getFeatureAccessModule(SourceFile:367)
+	at com.yattasolutions.obf.ci.d.a(SourceFile:59)
+	at com.yattasolutions.obf.ci.d.<init>(SourceFile:31)
+	at com.yattasolutions.obf.ci.b.<init>(SourceFile:21)
+	at com.yattasolutions.obf.cj.e.<init>(SourceFile:163)
+	at com.yattasolutions.obf.ag.c.cL(SourceFile:109)
+	at com.yattasolutions.obf.ag.a.cz(SourceFile:568)
+	at com.yattasolutions.obf.ag.a.cy(SourceFile:551)
+	at com.yattasolutions.obf.ag.f.<init>(SourceFile:57)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.lang.Class.newInstance(Class.java:442)
+	at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.createExecutableExtension(RegistryStrategyOSGI.java:187)
+	at org.eclipse.core.internal.registry.ExtensionRegistry.createExecutableExtension(ExtensionRegistry.java:931)
+	at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(ConfigurationElement.java:243)
+	at org.eclipse.core.internal.registry.ConfigurationElementHandle.createExecutableExtension(ConfigurationElementHandle.java:60)
+	at com.yattasolutions.obf.ag.a.cq(SourceFile:282)
+	at com.yattasolutions.obf.ag.a.cp(SourceFile:260)
+	at com.yattasolutions.obf.ag.a.cA(SourceFile:630)
+	at com.yattasolutions.obf.da.h$1.run(SourceFile:62)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:60)
+Caused by: java.lang.ClassNotFoundException: core.CorePackage cannot be found by seg.jUCMNav_7.0.0
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:508)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:419)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:411)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:150)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.loadClass(EquinoxBundle.java:609)
+	at org.eclipse.emf.common.CommonPlugin$Implementation.loadClass(CommonPlugin.java:333)
+	at org.eclipse.emf.common.CommonPlugin.loadClass(CommonPlugin.java:107)
+	at org.eclipse.emf.ecore.plugin.RegistryReader$EPackageDescriptor.getEPackage(RegistryReader.java:291)
+	... 36 more
+
+!ENTRY com.yattasolutions.features.oaw 4 0 2019-02-03 20:26:11.182
+!MESSAGE Error accessing ePackage: 'http://cs.mcgill.ca/sel/core/1.0': java.lang.ClassNotFoundException: core.CorePackage cannot be found by seg.jUCMNav_7.0.0
+!STACK 0
+org.eclipse.emf.common.util.WrappedException: java.lang.ClassNotFoundException: core.CorePackage cannot be found by seg.jUCMNav_7.0.0
+	at org.eclipse.emf.ecore.plugin.RegistryReader$EPackageDescriptor.getEPackage(RegistryReader.java:298)
+	at org.eclipse.emf.ecore.impl.EPackageRegistryImpl.getEPackage(EPackageRegistryImpl.java:127)
+	at com.yattasolutions.obf.ju.k.acw(SourceFile:201)
+	at com.yattasolutions.obf.ju.k.cO(SourceFile:147)
+	at com.yattasolutions.obf.ju.k.cM(SourceFile:94)
+	at com.yattasolutions.obf.ju.a.cL(SourceFile:109)
+	at com.yattasolutions.obf.ju.k.bH(SourceFile:65)
+	at com.yattasolutions.obf.ju.a.getClassHandlerFactoryForType(SourceFile:76)
+	at com.yattasolutions.features.i.getClassHandlerFactoryForType(SourceFile:245)
+	at com.yattasolutions.features.i.getClassHandlerForType(SourceFile:341)
+	at com.yattasolutions.obf.ci.d.a(SourceFile:60)
+	at com.yattasolutions.obf.ci.d.<init>(SourceFile:31)
+	at com.yattasolutions.obf.ci.b.<init>(SourceFile:21)
+	at com.yattasolutions.obf.cj.e.<init>(SourceFile:163)
+	at com.yattasolutions.obf.ag.c.cL(SourceFile:109)
+	at com.yattasolutions.obf.ag.a.cz(SourceFile:568)
+	at com.yattasolutions.obf.ag.a.cy(SourceFile:551)
+	at com.yattasolutions.obf.ag.f.<init>(SourceFile:57)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.lang.Class.newInstance(Class.java:442)
+	at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.createExecutableExtension(RegistryStrategyOSGI.java:187)
+	at org.eclipse.core.internal.registry.ExtensionRegistry.createExecutableExtension(ExtensionRegistry.java:931)
+	at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(ConfigurationElement.java:243)
+	at org.eclipse.core.internal.registry.ConfigurationElementHandle.createExecutableExtension(ConfigurationElementHandle.java:60)
+	at com.yattasolutions.obf.ag.a.cq(SourceFile:282)
+	at com.yattasolutions.obf.ag.a.cp(SourceFile:260)
+	at com.yattasolutions.obf.ag.a.cA(SourceFile:630)
+	at com.yattasolutions.obf.da.h$1.run(SourceFile:62)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:60)
+Caused by: java.lang.ClassNotFoundException: core.CorePackage cannot be found by seg.jUCMNav_7.0.0
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:508)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:419)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:411)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:150)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.loadClass(EquinoxBundle.java:609)
+	at org.eclipse.emf.common.CommonPlugin$Implementation.loadClass(CommonPlugin.java:333)
+	at org.eclipse.emf.common.CommonPlugin.loadClass(CommonPlugin.java:107)
+	at org.eclipse.emf.ecore.plugin.RegistryReader$EPackageDescriptor.getEPackage(RegistryReader.java:291)
+	... 31 more
+
+!ENTRY com.yattasolutions.features.oaw 4 0 2019-02-03 20:26:13.609
+!MESSAGE Error accessing ePackage: 'http://cs.mcgill.ca/sel/core/1.0': java.lang.ClassNotFoundException: core.CorePackage cannot be found by seg.jUCMNav_7.0.0
+!STACK 0
+org.eclipse.emf.common.util.WrappedException: java.lang.ClassNotFoundException: core.CorePackage cannot be found by seg.jUCMNav_7.0.0
+	at org.eclipse.emf.ecore.plugin.RegistryReader$EPackageDescriptor.getEPackage(RegistryReader.java:298)
+	at org.eclipse.emf.ecore.impl.EPackageRegistryImpl.getEPackage(EPackageRegistryImpl.java:127)
+	at com.yattasolutions.obf.ju.k.acw(SourceFile:201)
+	at com.yattasolutions.obf.ju.k.cO(SourceFile:147)
+	at com.yattasolutions.obf.ju.k.cM(SourceFile:94)
+	at com.yattasolutions.obf.ju.a.cL(SourceFile:109)
+	at com.yattasolutions.obf.ju.k.bH(SourceFile:65)
+	at com.yattasolutions.obf.ju.a.getClassHandlerFactoryForType(SourceFile:76)
+	at com.yattasolutions.features.i.getClassHandlerFactoryForType(SourceFile:245)
+	at com.yattasolutions.features.i.getClassHandlerForType(SourceFile:341)
+	at com.yattasolutions.features.i.getClassHandlerForType(SourceFile:367)
+	at com.yattasolutions.features.c.M(SourceFile:82)
+	at com.yattasolutions.obf.jx.f.kn(SourceFile:464)
+	at com.yattasolutions.features.c.ZZ(SourceFile:946)
+	at com.yattasolutions.features.c.iteratorOfSuperClasses(SourceFile:646)
+	at com.yattasolutions.codegen.oaw.visitor.b.a(SourceFile:223)
+	at com.yattasolutions.codegen.oaw.visitor.b.a(SourceFile:206)
+	at com.yattasolutions.codegen.oaw.visitor.b.a(SourceFile:152)
+	at com.yattasolutions.codegen.oaw.visitor.b.b(SourceFile:100)
+	at com.yattasolutions.codegen.oaw.visitor.b.a(SourceFile:52)
+	at com.yattasolutions.codegen.oaw.extensions.c$1.a(SourceFile:415)
+	at com.yattasolutions.codegen.oaw.extensions.c$1.a(SourceFile:1)
+	at com.yattasolutions.codegen.oaw.visitor.b.a(SourceFile:65)
+	at com.yattasolutions.codegen.oaw.visitor.a.visitTemplate(SourceFile:166)
+	at com.yattasolutions.codegen.oaw.extensions.c.a(SourceFile:420)
+	at com.yattasolutions.codegen.oaw.extensions.c.a(SourceFile:254)
+	at com.yattasolutions.codegen.oaw.extensions.c.a(SourceFile:196)
+	at com.yattasolutions.codegen.oaw.extensions.c.loadResource(SourceFile:162)
+	at com.yattasolutions.obf.v.a.b(SourceFile:468)
+	at com.yattasolutions.obf.v.a.a(SourceFile:427)
+	at com.yattasolutions.obf.v.a.a(SourceFile:344)
+	at com.yattasolutions.obf.am.a.a(SourceFile:50)
+	at com.yattasolutions.obf.cw.l$1.run(SourceFile:141)
+	at com.yattasolutions.obf.cw.l.doExecute(SourceFile:151)
+	at com.yattasolutions.obf.nf.v.execute(SourceFile:212)
+	at org.eclipse.core.commands.operations.DefaultOperationHistory.execute(DefaultOperationHistory.java:488)
+	at com.yattasolutions.obf.nf.y.c(SourceFile:799)
+	at com.yattasolutions.obf.nf.y.b(SourceFile:795)
+	at com.yattasolutions.obf.nf.y$3.run(SourceFile:741)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2289)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2316)
+	at com.yattasolutions.obf.nf.y.a(SourceFile:751)
+	at com.yattasolutions.obf.nf.y.b(SourceFile:657)
+	at com.yattasolutions.obf.nf.y.a(SourceFile:610)
+	at com.yattasolutions.obf.nf.z.a(SourceFile:151)
+	at com.yattasolutions.obf.nf.z$c.runInWorkspace(SourceFile:125)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:60)
+Caused by: java.lang.ClassNotFoundException: core.CorePackage cannot be found by seg.jUCMNav_7.0.0
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:508)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:419)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:411)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:150)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.loadClass(EquinoxBundle.java:609)
+	at org.eclipse.emf.common.CommonPlugin$Implementation.loadClass(CommonPlugin.java:333)
+	at org.eclipse.emf.common.CommonPlugin.loadClass(CommonPlugin.java:107)
+	at org.eclipse.emf.ecore.plugin.RegistryReader$EPackageDescriptor.getEPackage(RegistryReader.java:291)
+	... 47 more
+
+!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2019-02-03 20:26:24.091
+!MESSAGE Project facet jst.web has not been defined. It is used in plugin org.eclipse.jst.j2ee.
+
+!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2019-02-03 20:26:24.091
+!MESSAGE Project facet jst.webfragment has not been defined. It is used in plugin org.eclipse.jst.j2ee.
