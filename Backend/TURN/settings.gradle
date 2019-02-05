@@ -1,5 +1,0 @@
-rootProject.name = 'mcgill.xtext.turn.parent'
-
-include 'mcgill.xtext.turn'
-include 'mcgill.xtext.turn.ide'
-include 'mcgill.xtext.turn.diagram'
