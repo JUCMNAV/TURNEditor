@@ -1,3 +1,0 @@
-include 'org.xtext.project.turn'
-include 'org.xtext.project.turn.tcolab.diagram'
-include 'org.xtext.project.turn.tcolab.ide'

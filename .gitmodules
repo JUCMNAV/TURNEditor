@@ -4,3 +4,15 @@
 [submodule "Backend/TURN"]
 	path = Backend/TURN
 	url = https://github.com/JUCMNAV/TURN.git
+[submodule "Backend/mcgill.xtext.turn.parent/TURN"]
+	path = Backend/mcgill.xtext.turn.parent/TURN
+	url = https://github.com/JUCMNAV/TURN
+[submodule "Backend/org.xtext.project.turn.tcolab.parent/TURN"]
+	path = Backend/org.xtext.project.turn.tcolab.parent/TURN
+	url = https://github.com/JUCMNAV/TURN
+[submodule "Backend/--force"]
+	path = Backend/--force
+	url = https://github.com/JUCMNAV/TURN
+[submodule "Backend/--TURN"]
+	path = Backend/--TURN
+	url = https://github.com/JUCMNAV/TURN
