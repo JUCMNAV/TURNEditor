@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.project.turn
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.project.turn; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.common.types,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.xtext.project.turn.validation,
+ org.xtext.project.turn.scoping,
+ org.xtext.project.turn.parser.antlr,
+ org.xtext.project.turn.jvmmodel,
+ org.xtext.project.turn,
+ org.xtext.project.turn.turn.impl,
+ org.xtext.project.turn.parser.antlr.internal,
+ org.xtext.project.turn.turn.util,
+ org.xtext.project.turn.serializer,
+ org.xtext.project.turn.services,
+ org.xtext.project.turn.turn
+Import-Package: org.apache.log4j
