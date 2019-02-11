@@ -14,7 +14,7 @@ public class RunSocketServer {
   
   public static void main(final String[] args) throws Exception {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method createInjectorAndDoEMFRegistration() is undefined for the type new TURNIdeSetup(){}"
+      + "\nThe method createInjectorAndDoEMFRegistration() is undefined for the type new TurnIdeSetup(){}"
       + "\nTurnRuntimeModule cannot be resolved.");
   }
 }

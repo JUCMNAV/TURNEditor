@@ -1,7 +1,7 @@
 buildscript {
 	repositories.jcenter()
 	dependencies {
-		classpath 'org.xtext:xtext-gradle-plugin:2.0.1'
+		classpath 'org.xtext:xtext-gradle-plugin:1.0.19'
 	}
 }
 
@@ -17,7 +17,7 @@ subprojects {
 		}
 	}
 	
-	group = 'TURN'
+	group = 'org.xtext.project.turn'
 	version = rootProject.version
 	
 	apply plugin: 'org.xtext.xtend'

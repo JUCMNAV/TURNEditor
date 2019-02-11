@@ -19,7 +19,7 @@ dependencies {
 // sourceSets.test.compileClasspath += project(':org.xtext.project.turn.tcolab').sourceSets.test.output
 // sourceSets.test.runtimeClasspath += project(':org.xtext.project.turn.tcolab').sourceSets.test.output
 
-mainClassName = 'org.xtext.project.turn.tcolab.diagram.TURNServerLauncher'
+mainClassName = 'org.xtext.project.turn.tcolab.diagram.TurnServerLauncher'
 applicationName = 'turn-language-server'
 ext.applicationQualifier = 'diagram-extension'
 // applicationDefaultJvmArgs = ['-agentlib:jdwp=transport=dt_socket,address=localhost:8787,server=y,suspend=n,quiet=y']

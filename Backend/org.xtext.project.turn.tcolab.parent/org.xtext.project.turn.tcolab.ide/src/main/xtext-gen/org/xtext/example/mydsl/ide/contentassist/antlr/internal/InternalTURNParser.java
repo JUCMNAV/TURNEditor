@@ -10,7 +10,7 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.DFA;
-import org.xtext.example.mydsl.services.TURNGrammarAccess;
+import org.xtext.project.turn.services.TurnGrammarAccess;
 
 
 
@@ -166,9 +166,9 @@ public class InternalTURNParser extends AbstractInternalContentAssistParser {
     public String getGrammarFileName() { return "InternalTURN.g"; }
 
 
-    	private TURNGrammarAccess grammarAccess;
+    	private TurnGrammarAccess grammarAccess;
 
-    	public void setGrammarAccess(TURNGrammarAccess grammarAccess) {
+    	public void setGrammarAccess(TurnGrammarAccess grammarAccess) {
     		this.grammarAccess = grammarAccess;
     	}
 

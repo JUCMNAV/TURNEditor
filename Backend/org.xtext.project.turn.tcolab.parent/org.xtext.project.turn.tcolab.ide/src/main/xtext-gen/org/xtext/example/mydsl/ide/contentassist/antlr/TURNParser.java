@@ -10,7 +10,7 @@ import java.util.Map;
 import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.AbstractContentAssistParser;
 import org.xtext.example.mydsl.ide.contentassist.antlr.internal.InternalTURNParser;
-import org.xtext.example.mydsl.services.TURNGrammarAccess;
+import org.xtext.project.turn.services.TurnGrammarAccess;
 
 public class TURNParser extends AbstractContentAssistParser {
 
@@ -20,7 +20,7 @@ public class TURNParser extends AbstractContentAssistParser {
 		private final Map<AbstractElement, String> mappings;
 		
 		@Inject
-		public NameMappings(TURNGrammarAccess grammarAccess) {
+		public NameMappings(TurnGrammarAccess grammarAccess) {
 			ImmutableMap.Builder<AbstractElement, String> builder = ImmutableMap.builder();
 			init(builder, grammarAccess);
 			this.mappings = builder.build();
@@ -30,7 +30,7 @@ public class TURNParser extends AbstractContentAssistParser {
 			return mappings.get(element);
 		}
 		
-		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, TURNGrammarAccess grammarAccess) {
+		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, TurnGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getLongNameAccess().getLongnameAlternatives_1_1_0(), "rule__LongName__LongnameAlternatives_1_1_0");
 			builder.put(grammarAccess.getURNmodelElementAccess().getAlternatives(), "rule__URNmodelElement__Alternatives");
 			builder.put(grammarAccess.getActorAccess().getAlternatives_4_1(), "rule__Actor__Alternatives_4_1");
@@ -389,7 +389,7 @@ public class TURNParser extends AbstractContentAssistParser {
 	private NameMappings nameMappings;
 
 	@Inject
-	private TURNGrammarAccess grammarAccess;
+	private TurnGrammarAccess grammarAccess;
 
 	@Override
 	protected InternalTURNParser createParser() {
@@ -408,11 +408,11 @@ public class TURNParser extends AbstractContentAssistParser {
 		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
 	}
 
-	public TURNGrammarAccess getGrammarAccess() {
+	public TurnGrammarAccess getGrammarAccess() {
 		return this.grammarAccess;
 	}
 
-	public void setGrammarAccess(TURNGrammarAccess grammarAccess) {
+	public void setGrammarAccess(TurnGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
 	}
 	
