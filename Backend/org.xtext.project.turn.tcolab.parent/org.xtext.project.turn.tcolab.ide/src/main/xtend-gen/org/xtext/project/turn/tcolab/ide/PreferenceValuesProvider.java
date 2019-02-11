@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Singleton;
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.LanguageInfo;
@@ -26,8 +25,7 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
 import org.xtext.project.turn.tcolab.ide.JsonFileBasedPreferenceValues;
 
-@Log
-@Singleton
+/* @Log */@Singleton
 @SuppressWarnings("all")
 public class PreferenceValuesProvider implements IPreferenceValuesProvider {
   @Inject(optional = true)
@@ -130,6 +128,4 @@ public class PreferenceValuesProvider implements IPreferenceValuesProvider {
     };
     return _function;
   }
-  
-  private final static Logger LOG = Logger.getLogger(PreferenceValuesProvider.class);
 }

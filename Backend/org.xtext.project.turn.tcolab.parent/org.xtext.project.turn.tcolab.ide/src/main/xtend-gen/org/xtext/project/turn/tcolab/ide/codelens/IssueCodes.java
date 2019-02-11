@@ -9,62 +9,15 @@ import org.eclipse.xtend.lib.annotations.Data;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.preferences.PreferenceKey;
 import org.eclipse.xtext.validation.ConfigurableIssueCodesProvider;
-import org.eclipse.xtext.validation.SeverityConverter;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.Pure;
-import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
 
 @Singleton
 @SuppressWarnings("all")
 public class IssueCodes extends ConfigurableIssueCodesProvider {
-  @Data
-  public static class DocumentedPreferenceKey extends PreferenceKey {
-    private final String documentation;
-    
-    public DocumentedPreferenceKey(final String id, final String defaultValue, final String documentation) {
-      super(id, defaultValue);
-      this.documentation = documentation;
-    }
-    
-    @Override
-    @Pure
-    public int hashCode() {
-      return 31 * super.hashCode() + ((this.documentation== null) ? 0 : this.documentation.hashCode());
-    }
-    
-    @Override
-    @Pure
-    public boolean equals(final Object obj) {
-      if (this == obj)
-        return true;
-      if (obj == null)
-        return false;
-      if (getClass() != obj.getClass())
-        return false;
-      if (!super.equals(obj))
-        return false;
-      IssueCodes.DocumentedPreferenceKey other = (IssueCodes.DocumentedPreferenceKey) obj;
-      if (this.documentation == null) {
-        if (other.documentation != null)
-          return false;
-      } else if (!this.documentation.equals(other.documentation))
-        return false;
-      return true;
-    }
-    
-    @Override
-    @Pure
-    public String toString() {
-      return new ToStringBuilder(this)
-      	.addAllFields()
-      	.toString();
-    }
-    
-    @Pure
-    public String getDocumentation() {
-      return this.documentation;
-    }
+  /* @Data
+   */public static class DocumentedPreferenceKey extends PreferenceKey {
+    private String documentation;
   }
   
   private final static ImmutableMap.Builder<String, PreferenceKey> BUILDER = ImmutableMap.<String, PreferenceKey>builder();
@@ -429,24 +382,18 @@ public class IssueCodes extends ConfigurableIssueCodesProvider {
   }
   
   private static String error(final String code, final CharSequence doc) {
-    String _string = doc.toString();
-    IssueCodes.DocumentedPreferenceKey _documentedPreferenceKey = new IssueCodes.DocumentedPreferenceKey(code, SeverityConverter.SEVERITY_ERROR, _string);
-    IssueCodes.BUILDER.put(code, _documentedPreferenceKey);
-    return code;
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The constructor DocumentedPreferenceKey() is not applicable for the arguments (String,String,String)");
   }
   
   private static String warn(final String code, final CharSequence doc) {
-    String _string = doc.toString();
-    IssueCodes.DocumentedPreferenceKey _documentedPreferenceKey = new IssueCodes.DocumentedPreferenceKey(code, SeverityConverter.SEVERITY_WARNING, _string);
-    IssueCodes.BUILDER.put(code, _documentedPreferenceKey);
-    return code;
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The constructor DocumentedPreferenceKey() is not applicable for the arguments (String,String,String)");
   }
   
   private static String ignore(final String code, final CharSequence doc) {
-    String _string = doc.toString();
-    IssueCodes.DocumentedPreferenceKey _documentedPreferenceKey = new IssueCodes.DocumentedPreferenceKey(code, SeverityConverter.SEVERITY_IGNORE, _string);
-    IssueCodes.BUILDER.put(code, _documentedPreferenceKey);
-    return code;
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The constructor DocumentedPreferenceKey() is not applicable for the arguments (String,String,String)");
   }
   
   public static void main(final String[] args) {

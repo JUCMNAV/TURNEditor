@@ -21,17 +21,16 @@ import org.eclipse.xtext.resource.IReferenceDescription;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.xbase.lib.Pair;
-import org.eclipse.xtext.xbase.lib.Pure;
 import org.xtext.project.turn.tcolab.ide.PreferenceValuesProvider;
 
 @SuppressWarnings("all")
 public class CodeLensService implements ICodeLensService {
-  @FinalFieldsConstructor
-  public static class MyAcceptor implements IReferenceFinder.Acceptor {
+  /* @FinalFieldsConstructor
+   */public static class MyAcceptor implements IReferenceFinder.Acceptor {
     private final URI uri;
     
-    @Accessors
-    private final Multimap<URI, Pair<URI, EReference>> references = HashMultimap.<URI, Pair<URI, EReference>>create();
+    /* @Accessors
+     */private final Multimap<URI, Pair<URI, EReference>> references = HashMultimap.<URI, Pair<URI, EReference>>create();
     
     @Override
     public void accept(final IReferenceDescription description) {
@@ -55,16 +54,6 @@ public class CodeLensService implements ICodeLensService {
         this.references.put(targetURI, _mappedTo);
       }
     }
-    
-    public MyAcceptor(final URI uri) {
-      super();
-      this.uri = uri;
-    }
-    
-    @Pure
-    public Multimap<URI, Pair<URI, EReference>> getReferences() {
-      return this.references;
-    }
   }
   
   public final static PreferenceKey CODE_LENS_ENABLED = new PreferenceKey("code-lenses", "on");
@@ -81,6 +70,7 @@ public class CodeLensService implements ICodeLensService {
   @Override
   public List<? extends CodeLens> computeCodeLenses(final Document document, final XtextResource resource, final CodeLensParams params, final CancelIndicator indicator) {
     throw new Error("Unresolved compilation problems:"
-      + "\nActor cannot be resolved to a type.");
+      + "\nActor cannot be resolved to a type."
+      + "\nInvalid number of arguments. The constructor MyAcceptor() is not applicable for the arguments (URI)");
   }
 }

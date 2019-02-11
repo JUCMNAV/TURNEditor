@@ -1,29 +1,18 @@
 package org.xtext.project.turn.tcolab.ide;
 
-import com.google.common.base.Objects;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import com.google.gson.internal.Streams;
-import com.google.gson.stream.JsonReader;
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 import java.util.Map;
 import java.util.Set;
-import org.apache.log4j.Logger;
 import org.eclipse.xtext.preferences.IPreferenceValues;
 import org.eclipse.xtext.preferences.MapBasedPreferenceValues;
 import org.eclipse.xtext.util.internal.Log;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Exceptions;
 
-@Log
-@SuppressWarnings("all")
+/* @Log */@SuppressWarnings("all")
 public class JsonFileBasedPreferenceValues extends MapBasedPreferenceValues {
   private final Path path;
   
@@ -39,60 +28,15 @@ public class JsonFileBasedPreferenceValues extends MapBasedPreferenceValues {
    * @return whether
    */
   public boolean checkIsUpToDate() {
-    boolean result = true;
-    final IPreferenceValues d = this.getDelegate();
-    if ((d instanceof JsonFileBasedPreferenceValues)) {
-      result = (result && ((JsonFileBasedPreferenceValues)d).checkIsUpToDate());
-    }
-    try {
-      final FileTime localLastMod = Files.getLastModifiedTime(this.path);
-      boolean _notEquals = (!Objects.equal(localLastMod, this.lastModification));
-      if (_notEquals) {
-        this.lastModification = localLastMod;
-        this.read();
-        return false;
-      }
-    } catch (final Throwable _t) {
-      if (_t instanceof Exception) {
-        final Exception e = (Exception)_t;
-        if ((!(e instanceof NoSuchFileException))) {
-          String _message = e.getMessage();
-          String _plus = ((("Error reading settings \'" + this.path) + "\' : ") + _message);
-          JsonFileBasedPreferenceValues.LOG.error(_plus);
-        } else {
-          this.lastModification = null;
-        }
-        boolean _isEmpty = this.getValues().isEmpty();
-        boolean _not = (!_isEmpty);
-        if (_not) {
-          this.clear();
-          return false;
-        }
-      } else {
-        throw Exceptions.sneakyThrow(_t);
-      }
-    }
-    return result;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field LOG is undefined"
+      + "\nerror cannot be resolved");
   }
   
   public void read() {
-    try {
-      this.clear();
-      final byte[] bytes = Files.readAllBytes(this.path);
-      ByteArrayInputStream _byteArrayInputStream = new ByteArrayInputStream(bytes);
-      InputStreamReader _inputStreamReader = new InputStreamReader(_byteArrayInputStream);
-      BufferedReader _bufferedReader = new BufferedReader(_inputStreamReader);
-      final JsonReader reader = new JsonReader(_bufferedReader);
-      reader.setLenient(true);
-      final JsonElement object = Streams.parse(reader);
-      if ((object instanceof JsonObject)) {
-        this.internalFillMap(null, ((JsonObject)object));
-      } else {
-        JsonFileBasedPreferenceValues.LOG.error("The turn.settings file, did not contain a top level object.");
-      }
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field LOG is undefined"
+      + "\nerror cannot be resolved");
   }
   
   private void internalFillMap(final String prefix, final JsonObject object) {
@@ -122,6 +66,4 @@ public class JsonFileBasedPreferenceValues extends MapBasedPreferenceValues {
       }
     }
   }
-  
-  private final static Logger LOG = Logger.getLogger(JsonFileBasedPreferenceValues.class);
 }
