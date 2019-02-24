@@ -7,7 +7,7 @@ import org.eclipse.xtext.xbase.lib.Pure;
 
 @Accessors
 @SuppressWarnings("all")
-public abstract class TURNNodeClassified extends SNode implements Traceable {
+public class TURNNodeClassified extends SNode implements Traceable {
   private String cssClass;
   
   private String trace;

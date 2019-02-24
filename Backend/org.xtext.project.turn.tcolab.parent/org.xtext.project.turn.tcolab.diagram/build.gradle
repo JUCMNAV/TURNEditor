@@ -1,7 +1,8 @@
-apply from: "${rootDir}/gradle/distribution.gradle"
 
 ext.title = 'TURN Diagram Generator'
 description = 'Overview of diagram generator for TURN based on sprotty (currently supports GRL only)'
+
+apply from: "${rootDir}/gradle/distribution.gradle"
 
 dependencies {
 	compile project(':org.xtext.project.turn.tcolab.ide')
@@ -15,11 +16,7 @@ dependencies {
 	testCompile "org.eclipse.xtext:org.eclipse.xtext.testing:${versions.xtext}"
 }
 
-// Reuse the test infrastructure from the TURN base module
-// sourceSets.test.compileClasspath += project(':org.xtext.project.turn.tcolab').sourceSets.test.output
-// sourceSets.test.runtimeClasspath += project(':org.xtext.project.turn.tcolab').sourceSets.test.output
-
-mainClassName = 'org.xtext.project.turn.tcolab.diagram.TurnServerLauncher'
+mainClassName = 'org.xtext.project.turn.tcolab.diagram.TURNServerLauncher'
 applicationName = 'turn-language-server'
 ext.applicationQualifier = 'diagram-extension'
 // applicationDefaultJvmArgs = ['-agentlib:jdwp=transport=dt_socket,address=localhost:8787,server=y,suspend=n,quiet=y']

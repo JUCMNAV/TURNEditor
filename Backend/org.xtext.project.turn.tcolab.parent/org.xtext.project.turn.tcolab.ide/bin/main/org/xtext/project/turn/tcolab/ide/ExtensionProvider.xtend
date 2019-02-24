@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtext.preferences.PreferenceKey
 import org.eclipse.xtext.util.internal.Log
-
+import org.xtext.project.turn.tcolab.ide.settings.PreferenceValuesProvider
 
 @Log class ExtensionProvider {
 	

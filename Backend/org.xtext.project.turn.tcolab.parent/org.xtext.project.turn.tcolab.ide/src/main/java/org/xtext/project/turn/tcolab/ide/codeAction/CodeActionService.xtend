@@ -11,19 +11,19 @@ import org.eclipse.xtext.ide.server.codeActions.ICodeActionService
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.util.CancelIndicator
 
-
+import org.xtext.project.turn.tcolab.ide.IssueCodes
 import org.eclipse.lsp4j.CodeAction
 import org.eclipse.lsp4j.jsonrpc.messages.Either
-import org.eclipse.xtext.validation.IssueCodes
+
 
 class CodeActionService implements ICodeActionService {
 	
-	static val COMMAND_ID = 'turn.apply.workspaceEdit'
+	static val COMMAND_ID = 'yang.apply.workspaceEdit'
 	
 	override getCodeActions(Document document, XtextResource resource, CodeActionParams params, CancelIndicator indicator) {
 		val result = <Command>newArrayList
 		for (d : params.context.diagnostics) {
-			if (d.code == IssueCodes) {
+			if (d.code == IssueCodes.INCORRECT_VERSION) {
 				result += createFix('Change to "1.1".', resource.URI, new TextEdit => [
 					newText = "1.1"
 					range = d.range

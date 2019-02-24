@@ -26,8 +26,8 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 
 import org.eclipse.xtext.preferences.PreferenceKey
 
-import org.xtext.project.turn.tcolab.ide.PreferenceValuesProvider
 import org.xtext.project.turn.turn.Actor
+import org.xtext.project.turn.tcolab.ide.settings.PreferenceValuesProvider
 
 class CodeLensService implements ICodeLensService {
 	
@@ -75,7 +75,7 @@ class CodeLensService implements ICodeLensService {
 						result += new CodeLens=>[
 							it.range = range
 							command = new Command => [
-								command = 'yang.show.references'
+								command = 'turn.show.references'
 								title = switch count : acceptor.references.get(uri).size {
 									case 1 : '1 reference'
 									default : '''«count» references'''

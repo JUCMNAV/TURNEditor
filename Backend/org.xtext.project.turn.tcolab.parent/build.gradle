@@ -1,13 +1,17 @@
+ext.title = 'TURN LSP + Sprotty Parent Project'
+description = 'Parent project which refers to TURN grammar and includes the project. Also, it has two other sub projects '
+
+
 buildscript {
 	repositories.jcenter()
 	dependencies {
-		classpath 'org.xtext:xtext-gradle-plugin:1.0.19'
+		classpath 'org.xtext:xtext-gradle-plugin:2.0.1'
 	}
 }
 
 apply from: "${rootDir}/gradle/versions.gradle"
 
-subprojects {
+allprojects {
 	repositories {
 		mavenLocal()
 		mavenCentral()
@@ -30,8 +34,10 @@ subprojects {
 	apply from: "${rootDir}/gradle/maven-deployment.gradle"
 }
 
+/*
 task clean(type: Delete) {
 	group 'Build'
 	description 'Deletes the local repositories'
 	delete 'build'
 }
+*/

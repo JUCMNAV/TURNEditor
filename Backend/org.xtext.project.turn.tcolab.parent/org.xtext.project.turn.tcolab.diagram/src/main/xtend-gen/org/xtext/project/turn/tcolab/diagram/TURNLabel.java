@@ -7,7 +7,7 @@ import org.eclipse.xtext.xbase.lib.Pure;
 
 @Accessors
 @SuppressWarnings("all")
-public abstract class TURNLabel extends SLabel implements Traceable {
+public class TURNLabel extends SLabel implements Traceable {
   private String trace;
   
   @Pure

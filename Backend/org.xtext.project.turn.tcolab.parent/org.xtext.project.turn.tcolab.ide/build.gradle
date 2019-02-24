@@ -8,7 +8,3 @@ dependencies {
 	testCompile "junit:junit:${versions.junit}"
 	testCompile "org.eclipse.xtext:org.eclipse.xtext.testing:${versions.xtext}"
 }
-
-test {
-    maxHeapSize '512m'
-}

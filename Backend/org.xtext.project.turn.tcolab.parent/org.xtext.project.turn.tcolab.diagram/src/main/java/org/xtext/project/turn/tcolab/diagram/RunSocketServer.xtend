@@ -4,7 +4,7 @@
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
-package org.xtext.project.turn.tcolab.diagram;
+package org.xtext.project.turn.tcolab.diagram
 
 import com.google.gson.GsonBuilder
 import com.google.inject.Guice
@@ -27,10 +27,9 @@ import org.eclipse.xtext.ide.server.LanguageServerImpl
 import org.eclipse.xtext.ide.server.ServerModule
 import org.eclipse.xtext.resource.IResourceServiceProvider
 import org.eclipse.xtext.util.Modules2
+import org.xtext.project.turn.tcolab.ide.TURNIdeSetup
 import org.xtext.project.turn.TurnRuntimeModule
-import com.google.inject.Module
-import org.xtext.project.turn.tcolab.ide.TurnIdeModule
-import org.xtext.project.turn.tcolab.ide.TurnIdeSetup
+import org.xtext.project.turn.tcolab.ide.TURNIdeModule
 
 class RunSocketServer {
 	
@@ -42,9 +41,9 @@ class RunSocketServer {
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put('elkg', new ElkGraphResourceFactory)
 		
 		// Do a manual setup that includes the TURN diagram module
-		new TurnIdeSetup {
+		new TURNIdeSetup {
 			override createInjector() {
-				Guice.createInjector(Modules2.mixin(new TurnRuntimeModule, new TurnIdeModule, new TurnDiagramModule))
+				Guice.createInjector(Modules2.mixin(new TurnRuntimeModule, new TURNIdeModule, new TURNDiagramModule))
 			}
 		}.createInjectorAndDoEMFRegistration()
 		

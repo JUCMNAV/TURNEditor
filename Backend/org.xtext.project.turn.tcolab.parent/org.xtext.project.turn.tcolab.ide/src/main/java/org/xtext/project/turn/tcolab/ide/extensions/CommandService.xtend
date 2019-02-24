@@ -15,7 +15,7 @@ import org.eclipse.xtext.util.internal.Log
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import org.xtext.project.turn.tcolab.ide.ExtensionProvider
-import org.xtext.project.turn.tcolab.ide.PreferenceValuesProvider
+import org.xtext.project.turn.tcolab.ide.settings.PreferenceValuesProvider
 
 @Log class CommandService implements IExecutableCommandService {
 	

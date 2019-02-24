@@ -6,7 +6,7 @@ import org.xtext.project.turn.tcolab.diagram.TURNNodeClassified;
 
 @Accessors
 @SuppressWarnings("all")
-public abstract class MAPStartNode extends TURNNodeClassified {
+public class MAPStartNode extends TURNNodeClassified {
   private Boolean expanded;
   
   @Pure

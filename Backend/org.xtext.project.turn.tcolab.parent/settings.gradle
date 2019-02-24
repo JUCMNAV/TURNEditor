@@ -1,7 +1,20 @@
 rootProject.name = 'org.xtext.project.turn.tcolab.parent'
 
 include ":org.xtext.project.turn"
-project(":org.xtext.project.turn").projectDir = file("/home/rijul/eclipse-workspace/TURNEditor/TURN/org.xtext.project.turn")
+project(":org.xtext.project.turn").projectDir = new File(settingsDir, "../TURN/org.xtext.project.turn")
 
+/*
+include ":org.xtext.project.turn.ide"
+project(":org.xtext.project.turn.ide").projectDir = new File(settingsDir, "../TURN/org.xtext.project.turn.ide")
+
+include ":org.xtext.project.turn.tests"
+project(":org.xtext.project.turn.tests").projectDir = new File(settingsDir, "../TURN/org.xtext.project.turn.tests")
+
+include ":org.xtext.project.turn.ui"
+project(":org.xtext.project.turn.ui").projectDir = new File(settingsDir, "../TURN/org.xtext.project.turn.ui")
+
+include ":org.xtext.project.turn.ui.tests"
+project(":org.xtext.project.turn.ui.tests").projectDir = new File(settingsDir, "../TURN/org.xtext.project.turn.ui.tests")
+*/
 include 'org.xtext.project.turn.tcolab.diagram'
 include 'org.xtext.project.turn.tcolab.ide'

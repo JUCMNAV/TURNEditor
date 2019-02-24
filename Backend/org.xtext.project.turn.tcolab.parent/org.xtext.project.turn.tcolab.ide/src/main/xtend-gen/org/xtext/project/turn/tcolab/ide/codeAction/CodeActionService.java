@@ -16,7 +16,6 @@ import org.eclipse.xtext.ide.server.Document;
 import org.eclipse.xtext.ide.server.codeActions.ICodeActionService;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
-import org.eclipse.xtext.validation.IssueCodes;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -24,10 +23,11 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.xtext.project.turn.tcolab.ide.IssueCodes;
 
 @SuppressWarnings("all")
 public class CodeActionService implements ICodeActionService {
-  private final static String COMMAND_ID = "turn.apply.workspaceEdit";
+  private final static String COMMAND_ID = "yang.apply.workspaceEdit";
   
   @Override
   public List<Either<Command, CodeAction>> getCodeActions(final Document document, final XtextResource resource, final CodeActionParams params, final CancelIndicator indicator) {
@@ -35,7 +35,7 @@ public class CodeActionService implements ICodeActionService {
     List<Diagnostic> _diagnostics = params.getContext().getDiagnostics();
     for (final Diagnostic d : _diagnostics) {
       String _code = d.getCode();
-      boolean _equals = Objects.equal(_code, IssueCodes.class);
+      boolean _equals = Objects.equal(_code, IssueCodes.INCORRECT_VERSION);
       if (_equals) {
         URI _uRI = resource.getURI();
         TextEdit _textEdit = new TextEdit();

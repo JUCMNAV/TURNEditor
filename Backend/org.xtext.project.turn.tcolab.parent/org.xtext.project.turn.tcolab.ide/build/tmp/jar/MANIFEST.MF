@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Bundle-SymbolicName: mcgill.xtext.turn.ide
+Bundle-SymbolicName: org.xtext.project.turn.tcolab.ide
 

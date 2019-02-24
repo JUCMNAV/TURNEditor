@@ -8,7 +8,7 @@ import org.eclipse.xtext.xbase.lib.Pure;
 
 @Accessors
 @SuppressWarnings("all")
-public abstract class MAPStartTag extends SShapeElement implements Layouting {
+public class MAPStartTag extends SShapeElement implements Layouting {
   private String layout;
   
   public MAPStartTag() {

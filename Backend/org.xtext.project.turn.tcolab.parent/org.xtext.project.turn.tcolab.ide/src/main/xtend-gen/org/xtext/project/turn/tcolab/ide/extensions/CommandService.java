@@ -5,13 +5,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.lsp4j.ExecuteCommandParams;
 import org.eclipse.lsp4j.MessageParams;
 import org.eclipse.lsp4j.services.LanguageClient;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.ide.server.ILanguageServerAccess;
 import org.eclipse.xtext.ide.server.commands.IExecutableCommandService;
+import org.eclipse.xtext.preferences.IPreferenceValues;
 import org.eclipse.xtext.preferences.IPreferenceValuesProvider;
 import org.eclipse.xtext.preferences.PreferenceKey;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -23,10 +27,13 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
 import org.xtext.project.turn.tcolab.ide.ExtensionProvider;
 import org.xtext.project.turn.tcolab.ide.extensions.ICommandExtension;
+import org.xtext.project.turn.tcolab.ide.settings.PreferenceValuesProvider;
 
-/* @Log */@SuppressWarnings("all")
+@Log
+@SuppressWarnings("all")
 public class CommandService implements IExecutableCommandService {
   private final static PreferenceKey KEY = new PreferenceKey("extension.commands", "");
   
@@ -41,11 +48,61 @@ public class CommandService implements IExecutableCommandService {
   
   @Inject
   public void registerPreferenceChangeListener(final IPreferenceValuesProvider provider) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field LOG is undefined"
-      + "\nThe method or field LOG is undefined"
-      + "\nwarn cannot be resolved"
-      + "\nwarn cannot be resolved");
+    if ((provider instanceof PreferenceValuesProvider)) {
+      final Procedure2<IPreferenceValues, Resource> _function = (IPreferenceValues $0, Resource $1) -> {
+        if (((this.extensionProvider == null) || (this.register == null))) {
+          return;
+        }
+        final Runnable _function_1 = () -> {
+          try {
+            Thread.sleep(1000);
+            final List<ICommandExtension> extensions = this.extensionProvider.<ICommandExtension>getExtensions(CommandService.KEY, $1, ICommandExtension.class);
+            try {
+              final Consumer<IDisposable> _function_2 = (IDisposable it) -> {
+                it.dispose();
+              };
+              this.registeredCommands.forEach(_function_2);
+            } catch (final Throwable _t) {
+              if (_t instanceof Exception) {
+                final Exception e = (Exception)_t;
+                String _message = e.getMessage();
+                String _plus = ("Error unregistering commands : " + _message);
+                CommandService.LOG.warn(_plus);
+                this.dispose();
+                return;
+              } else {
+                throw Exceptions.sneakyThrow(_t);
+              }
+            }
+            this.registeredCommands = CollectionLiterals.<IDisposable>newArrayList();
+            for (final ICommandExtension ext : extensions) {
+              List<String> _commands = ext.getCommands();
+              for (final String c : _commands) {
+                try {
+                  final IDisposable apply = this.register.apply(c);
+                  this.registeredCommands.add(apply);
+                } catch (final Throwable _t_1) {
+                  if (_t_1 instanceof Exception) {
+                    final Exception e_1 = (Exception)_t_1;
+                    String _message_1 = e_1.getMessage();
+                    String _plus_1 = ("Error registering commands : " + _message_1);
+                    CommandService.LOG.warn(_plus_1);
+                    this.dispose();
+                    return;
+                  } else {
+                    throw Exceptions.sneakyThrow(_t_1);
+                  }
+                }
+              }
+            }
+          } catch (Throwable _e) {
+            throw Exceptions.sneakyThrow(_e);
+          }
+        };
+        this.service.submit(_function_1);
+      };
+      ((PreferenceValuesProvider)provider).registerChangeListener(_function);
+    }
   }
   
   public Function1<? super String, ? extends IDisposable> dispose() {
@@ -131,4 +188,6 @@ public class CommandService implements IExecutableCommandService {
   public void initializeDynamicRegistration(final Function1<? super String, ? extends IDisposable> register) {
     this.register = register;
   }
+  
+  private final static Logger LOG = Logger.getLogger(CommandService.class);
 }

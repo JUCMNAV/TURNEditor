@@ -29,7 +29,7 @@ import org.xtext.project.turn.tcolab.ide.symbols.TurnDocumentSymbolService;
  * Use this class to register ide components.
  */
 @SuppressWarnings("all")
-public class TurnIdeModule extends AbstractTURNIdeModule {
+public class TURNIdeModule extends AbstractTURNIdeModule {
   public static class NoOpCodeLensResolver implements ICodeLensResolver {
     @Override
     public CodeLens resolveCodeLens(final Document document, final XtextResource resource, final CodeLens codeLens, final CancelIndicator indicator) {
@@ -59,7 +59,7 @@ public class TurnIdeModule extends AbstractTURNIdeModule {
   }
   
   public Class<? extends ICodeLensResolver> bindICodeLensResolver() {
-    return TurnIdeModule.NoOpCodeLensResolver.class;
+    return TURNIdeModule.NoOpCodeLensResolver.class;
   }
   
   public Class<? extends ContentAssistService> bindContentAssistService() {
