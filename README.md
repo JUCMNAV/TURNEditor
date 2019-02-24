@@ -16,7 +16,7 @@ the complete URN, including its scenario/workflow notation Use Case Maps and sup
 
 ## Launch TURNEditor locally in Browser
 ```
-git clone https://github.com/JUCMNAV/TURNEditor.git
+git clone --recursive https://github.com/JUCMNAV/TURNEditor.git
 ```
 Open Terminal and navigate to TURNEditor folder
 ```
