@@ -1,0 +1,14 @@
+.idea
+.browser_modules
+node_modules
+build
+bin
+lib
+.DS_Store
+turn-server.log
+turn-app/webpack.config.js
+src-gen
+lerna-debug.log
+turn-app-electron/webpack.config.js
+turn-language-server.zip
+**/*.log
