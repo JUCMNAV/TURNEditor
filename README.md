@@ -28,7 +28,7 @@ yarn start
 Open browser and use *http://localhost:3000/* to launch TURNEditor
 
 ## Launch TURNEditor in development mode
-For development it is better to connect to the running LSP through a socket. Import Project in Eclipse or in other IDE.
+For development it is better to connect to the running LSP through a socket. Import project *org.xtext.project.turn.tcolab.parent* in Eclipse or in other IDE as an "Existing gradle project".
 
 * Select projects and go to *project -> clean*
 * Go to *org.xtext.project.turn.tcolab.diagram -> src -> main -> xtend-gen -> org.xtext.project.turn.tcolab.diagram -> RunSocketServer*
