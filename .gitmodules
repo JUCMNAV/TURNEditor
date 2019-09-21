@@ -1,4 +1,0 @@
-
-[submodule "Backend/TURN"]
-	path = Backend/TURN
-	url = https://github.com/JUCMNAV/TURN.git
