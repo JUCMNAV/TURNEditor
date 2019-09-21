@@ -1,0 +1,5 @@
+rootProject.name = 'turn-lsp'
+
+include 'org.jucmnav.turn'
+include 'org.jucmnav.turn.ide'
+include 'org.jucmnav.turn.diagram'

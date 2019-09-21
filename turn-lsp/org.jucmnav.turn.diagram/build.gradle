@@ -1,0 +1,20 @@
+ext.title = 'TURN Diagram Generator'
+description = 'Overview of diagram generator for TURN based on sprotty'
+
+apply from: "${rootDir}/gradle/distribution.gradle"
+
+dependencies {
+	compile project(':org.jucmnav.turn.ide')
+	compile "org.eclipse.lsp4j:org.eclipse.lsp4j:${versions.lsp4j}"
+	compile "org.eclipse.elk:org.eclipse.elk.alg.layered:${versions.elk}"
+	compile "io.typefox.sprotty:diagram-server:${versions.sprotty}"
+	compile "io.typefox.sprotty:diagram-layout-engine:${versions.sprotty}"
+	compile "io.typefox.sprotty:xtext-diagram:${versions.sprotty}"
+	
+	testCompile "junit:junit:${versions.junit}"
+	testCompile "org.eclipse.xtext:org.eclipse.xtext.testing:${versions.xtext}"
+}
+
+mainClassName = 'org.xtext.project.turn.tcolab.diagram.TURNServerLauncher'
+applicationName = 'turn-language-server'
+ext.applicationQualifier = 'diagram-extension'

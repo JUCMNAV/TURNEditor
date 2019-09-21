@@ -1,0 +1,45 @@
+{
+  "name": "theia-turn-extension",
+  "version": "0.1.22",
+  "description": "An extension for Theia connection language support for the TURN DSL",
+  "author": "Project Theia",
+  "license": "Apache-2.0",
+  "keywords": [
+    "theia-extension"
+  ],
+  "dependencies": {
+    "@theia/core": "latest",
+    "@theia/editor": "latest",
+    "@theia/filesystem": "latest",
+    "@theia/languages": "latest",
+    "@theia/monaco": "latest",
+    "@types/node": "^8.0.14",
+    "theia-sprotty": "0.1.20",
+    "turn-sprotty": "0.1.8"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn install:languageserver && yarn run build",
+    "install:languageserver": "rimraf -rf ./build && mkdir build && yarn download:languageserver",
+    "download:languageserver": "rm -rf ./build && mkdir build && cp -r ../../turn-lsp/org.jucmnav.turn.diagram/build/install/turn-language-server ./build",
+    "clean": "rimraf lib",
+    "lint": "tslint -c ./tslint.json --project ./tsconfig.json",
+    "build": "tsc && yarn lint",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.1",
+    "tslint": "^5.5.0"
+  },
+  "files": [
+    "lib",
+    "src",
+    "build",
+    "data"
+  ],
+  "theiaExtensions": [
+    {
+      "frontend": "lib/frontend/language/frontend-extension",
+      "backend": "lib/backend/backend-extension"
+    }
+  ]
+}

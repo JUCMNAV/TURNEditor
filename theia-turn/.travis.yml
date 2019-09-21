@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+    - docker
+
+install:
+    - docker build -t theia/frontend .
+    - docker run --net=host --name frontend -d -p 127.0.0.1:3000:3000 theia/frontend
+
+script:
+    - ./docker-test.sh
