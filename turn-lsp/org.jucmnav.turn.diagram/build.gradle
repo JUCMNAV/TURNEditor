@@ -15,6 +15,6 @@ dependencies {
 	testCompile "org.eclipse.xtext:org.eclipse.xtext.testing:${versions.xtext}"
 }
 
-mainClassName = 'org.xtext.project.turn.tcolab.diagram.TURNServerLauncher'
+mainClassName = 'org.jucmnav.turn.diagram.TurnServerLauncher'
 applicationName = 'turn-language-server'
 ext.applicationQualifier = 'diagram-extension'
