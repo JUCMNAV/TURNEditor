@@ -1,21 +1,25 @@
-//add build & target directories here
-.idea
-.browser_modules
-node_modules
-build
-bin
-lib
+# global ignores
 .DS_Store
-turn-server.log
-turn-app/webpack.config.js
-src-gen
-lerna-debug.log
-turn-app-electron/webpack.config.js
+build/
+bin/
+*.log
+lib/
+
+# theia-turn ignores
+.idea/
+.browser_modules/
+webpack.config.js
+src-gen/
 turn-language-server.zip
-**/*.log
-**/.nyc_output
-**/node_modules/
-**/lib/
-**/artifacts/
-**/bundle.js
-**/bundle.js.map
+.nyc_output
+node_modules/
+artifacts/
+bundle.js
+bundle.js.map
+
+# turn-lsp ignores
+.eclipse
+.gradle/
+model/
+xtend-gen/
+xtext-gen/
