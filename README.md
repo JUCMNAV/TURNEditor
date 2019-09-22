@@ -14,6 +14,13 @@ the complete URN, including its scenario/workflow notation Use Case Maps and sup
 * [Docker CE](https://docs.docker.com/install/)
 * [Eclipse Che](https://www.eclipse.org/che/docs/che-6/quick-start.html)
 
+## Project Structure
+### theia-turn
+TURN's Theia IDE development related project. Uses mostly web-based technologies (TypeScript, CSS). Import as separate project in IDE of choice (i.e. WebStorm).
+
+### turn-lsp
+TURN's language server protocol development related project. Uses mostly Eclipse technologies (Xtend, Xtext). Import separately as existing Gradle project in a recent version of Eclipse with DSL development tools (Xtext, Ecore, etc.).
+
 ## Launch TURNEditor locally in Browser
 ```
 git clone --recursive https://github.com/JUCMNAV/TURNEditor.git
