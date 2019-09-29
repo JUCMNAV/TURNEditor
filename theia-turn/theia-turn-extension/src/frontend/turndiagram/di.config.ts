@@ -10,16 +10,16 @@ import { KeyTool, TYPES } from 'sprotty/lib'
 import { DiagramConfiguration } from "theia-sprotty/lib"
 import { TheiaDiagramServer } from "theia-sprotty/lib"
 import { TheiaKeyTool } from 'theia-sprotty/lib'
-import { createTURNDiagramContainer } from 'turn-sprotty/lib'
+import { createContainer } from 'turn-sprotty/lib'
 
 @injectable()
 export class TURNDiagramConfiguration implements DiagramConfiguration {
-    diagramType: string = 'turn-diagram'
+    diagramType: string = 'turn-diagram';
 
     createContainer(widgetId: string): Container {
-        const container = createTURNDiagramContainer(widgetId)
-        container.bind(TYPES.ModelSource).to(TheiaDiagramServer).inSingletonScope()
-        container.rebind(KeyTool).to(TheiaKeyTool).inSingletonScope()
-        return container
+        const container = createContainer(widgetId);
+        container.bind(TYPES.ModelSource).to(TheiaDiagramServer).inSingletonScope();
+        container.rebind(KeyTool).to(TheiaKeyTool).inSingletonScope();
+        return container;
     }
 }

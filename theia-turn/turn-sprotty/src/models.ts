@@ -11,9 +11,9 @@ import {
 } from "sprotty/lib"
 
 export class TURNNode extends RectangularNode {
-    cssClass: string
-    trace: string | undefined
-    strokeWidth = 1
+    cssClass: string;
+    trace: string | undefined;
+    strokeWidth = 1;
 
     hasFeature(feature: symbol): boolean {
         return feature === selectFeature || feature === boundsFeature
@@ -23,9 +23,9 @@ export class TURNNode extends RectangularNode {
 }
 
 export class MAPStartNode extends CircularNode {
-    cssClass: string
-    trace: string | undefined
-    strokeWidth = 1
+    cssClass: string;
+    trace: string | undefined;
+    strokeWidth = 1;
     name: string = '';
     status?: string;
     kernelNr: number;
@@ -39,8 +39,8 @@ export class MAPStartNode extends CircularNode {
 }
 
 export class ModuleNode extends TURNNode implements Expandable {
-    title: string
-    expanded = false
+    title: string;
+    expanded = false;
 
     hasFeature(feature: symbol): boolean {
         return feature === expandFeature || super.hasFeature(feature)
@@ -54,7 +54,7 @@ export class TURNHeaderNode extends SCompartment {
 }
 
 export class MAPStartLabel extends SLabel {
-    trace: string | undefined
+    trace: string | undefined;
 
     hasFeature(feature: symbol) {
         return super.hasFeature(feature) || feature === selectFeature || (feature === openFeature && this.trace !== undefined)
@@ -62,7 +62,7 @@ export class MAPStartLabel extends SLabel {
 }
 
 export class TURNLabel extends SLabel {
-    trace: string | undefined
+    trace: string | undefined;
 
     hasFeature(feature: symbol) {
         return super.hasFeature(feature) || feature === selectFeature || (feature === openFeature && this.trace !== undefined)
@@ -73,7 +73,7 @@ export class Tag extends SShapeElement {
     size = {
         width: 24,
         height: 24
-    }
+    };
 
     hasFeature(feature: symbol): boolean {
         return feature === boundsFeature || feature === layoutContainerFeature || feature === layoutableChildFeature || feature === fadeFeature

@@ -8,5 +8,5 @@
 
 // ------------------ Base ------------------
 
-import createTURNDiagramContainer from './di.config'
-export { createTURNDiagramContainer }
+import createContainer from './di.config'
+export { createContainer }

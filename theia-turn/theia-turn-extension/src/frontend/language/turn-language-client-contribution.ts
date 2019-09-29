@@ -26,7 +26,6 @@ import { ContextMenuCommands } from './dynamic-commands'
 import { MessageService } from '@theia/core/lib/common'
 import { EditorManager } from "@theia/editor/lib/browser"
 import { OutlineViewWidget } from '@theia/outline-view/lib/browser/outline-view-widget';
-import { MonacoOutlineSymbolInformationNode } from '@theia/monaco/lib/browser/monaco-outline-contribution';
 export const OUTLINE_CONTEXT_MENU: MenuPath = ['outline-context-menu'];
 
 export namespace OutlineContextMenu {
@@ -49,8 +48,8 @@ export const OUTLINE_WIDGET_FACTORY_ID = 'outline-view';
 @injectable()
 export class TurnLanguageClientContribution extends BaseLanguageClientContribution {
 
-    readonly id = 'turn'
-    readonly name = 'Turn'
+    readonly id = 'turn';
+    readonly name = 'Turn';
 
     constructor(
         @inject(Workspace) workspace: Workspace,
@@ -193,26 +192,26 @@ export class DiagramCommandContribution extends AbstractViewContribution<Outline
     }
 
     async generateDiagram(widget: Widget | undefined) {
-        const abc = <OutlineViewWidget>widget
-        const { model } = abc;
+        const outlineViewWidget = <OutlineViewWidget>widget;
+        const { model } = outlineViewWidget;
         const def = model.selectedNodes;
+        console.log("Model Definition of OutlineViewWidget: " + def.toString());
         for (let node of def) {
             if (node !== undefined) {
-                const a = MonacoOutlineSymbolInformationNode.is(node);
-                console.log("MOnaco" + a)
-                console.log("heyaaaaaaaaaaaaaaaa Name" + node.name);
-                const j = node as MonacoOutlineSymbolInformationNode;
-                console.log("heyaaaaaaaaaaaaaaaa JJJ Name" + j.name);
+                console.log("Node: " + node.id);
                 const editor = this.editorManager.currentEditor;
                 if (editor !== undefined) {
-                    const uri = editor.editor.uri
+                    const uri = editor.editor.uri;
                     const encodedURI = uri.withFragment(node.name);
-                    console.log("Encoded URI" + encodedURI);
-                    const openers = this.openerService.getOpeners(encodedURI)
+                    console.log("Encoded URI: " + encodedURI);
+                    console.log("Node name: " + node.name);
+                    const openers = this.openerService.getOpeners(encodedURI);
                     openers.then(openers => {
-                        const opener = openers.find(opener => opener instanceof DiagramManagerImpl)
-                        if (opener !== undefined)
+                        const opener = openers.find(opener => opener instanceof DiagramManagerImpl);
+                        if (opener !== undefined) {
+                            console.log("OPENING");
                             opener.open(encodedURI, node.name);
+                        }
                     })
                 }
             }

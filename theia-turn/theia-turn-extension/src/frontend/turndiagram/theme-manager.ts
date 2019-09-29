@@ -21,7 +21,7 @@ export class ThemeManager implements Disposable {
     private switchTheme(oldTheme: Theme | undefined, newTheme: Theme): void {
         if (oldTheme) {
             if (oldTheme.id === 'dark')
-                darkTheme.unuse()
+                darkTheme.unuse();
             else
                 lightTheme.unuse()
         }

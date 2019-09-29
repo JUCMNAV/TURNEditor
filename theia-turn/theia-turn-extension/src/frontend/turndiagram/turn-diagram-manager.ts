@@ -15,18 +15,18 @@ import { ThemeManager } from './theme-manager';
 @injectable()
 export class TURNDiagramManager extends DiagramManagerImpl {
 
-    readonly diagramType = 'turn-diagram'
-    readonly iconClass = 'fa fa-microchip'
+    readonly diagramType = 'turn-diagram';
+    readonly iconClass = 'fa fa-microchip';
 
-    _diagramConnector: TheiaSprottyConnector
+    _diagramConnector: TheiaSprottyConnector;
 
     constructor(@inject(TurnLanguageClientContribution) languageClientContribution: LanguageClientContribution,
         @inject(TheiaFileSaver) theiaFileSaver: TheiaFileSaver,
         @inject(EditorManager) editorManager: EditorManager,
         @inject(DiagramWidgetRegistry) diagramWidgetRegistry: DiagramWidgetRegistry,
         @inject(ThemeManager) themeManager: ThemeManager) {
-        super()
-        themeManager.initialize()
+        super();
+        themeManager.initialize();
         this._diagramConnector = new TheiaSprottyConnector(languageClientContribution, theiaFileSaver, editorManager, diagramWidgetRegistry)
     }
 
