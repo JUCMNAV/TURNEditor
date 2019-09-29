@@ -49,12 +49,12 @@ class TurnPopupModelFactory implements IPopupModelFactory {
 						id = popupId + '-body'
 						code = '''
 							<div class="infoBlock">
-								Â«FOR info : infosÂ»
+								«FOR info : infos»
 									<div class="sprotty-infoRow">
-										<div class="sprotty-infoTitle">Â«info.keyÂ»:</div>
-										<div class="sprotty-infoText">Â«info.valueÂ»</div>
+										<div class="sprotty-infoTitle">«info.key»:</div>
+										<div class="sprotty-infoText">«info.value»</div>
 									</div>
-								Â«ENDFORÂ»
+								«ENDFOR»
 							</div>
 						'''
 					]
