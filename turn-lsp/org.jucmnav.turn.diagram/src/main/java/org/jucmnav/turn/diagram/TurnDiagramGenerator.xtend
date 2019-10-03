@@ -30,6 +30,8 @@ import org.jucmnav.turn.turn.Contribution
 import org.jucmnav.turn.turn.Decomposition
 import org.jucmnav.turn.turn.Dependency
 import org.jucmnav.turn.turn.IntentionalElement
+import org.jucmnav.turn.turn.UCMmap
+import org.jucmnav.turn.turn.Path
 
 class TurnDiagramGenerator implements IDiagramGenerator {
 	
@@ -47,26 +49,72 @@ class TurnDiagramGenerator implements IDiagramGenerator {
 	
 	override generate(Resource resource, IDiagramState state, CancelIndicator cancelIndicator) {
 		val stateInfo = state.getOptions();
-		val stateURI = stateInfo.get('sourceUri')
-		val modelElementPath = stateURI.substring(stateURI.lastIndexOf("#") + 1)
-		val sections = modelElementPath.substring(modelElementPath.lastIndexOf(".") + 1)
-		xtresource = resource as XtextResource
+		val stateURI = stateInfo.get('sourceUri');
+		val modelElementPath = stateURI.substring(stateURI.lastIndexOf("#") + 1);
+		val sections = modelElementPath.substring(modelElementPath.lastIndexOf(".") + 1);
+		xtresource = resource as XtextResource;
 		if(xtresource !== null) {
 			parseResult = xtresource.getParseResult();
 			if(parseResult !== null) {
 				rootNode = parseResult.getRootNode();
 				for (abstractNode : rootNode.getChildren()) {
-					val content = abstractNode.semanticElement
+					val content = abstractNode.semanticElement;
 					if(content instanceof Actor) {
 						if(sections.equals(content.name)) {
 							println('generating actors')
 							return generateDiagram(content)
 						}
+					}else if(content instanceof UCMmap){
+						println('Generating map...');
+						return generateDiagram(content);					
 					}
 				}
 			}
 			return null
 		}
+	}
+	
+	def SModelRoot generateDiagram(UCMmap map){
+		val SGraph diagramRoot = new SGraph => [
+			type = 'graph'
+			id = 'turn'
+			children = new ArrayList<SModelElement>
+			layoutOptions = new LayoutOptions [
+				HAlign = 'left'
+				HGap = 0.0
+				VGap = 10.0
+				paddingLeft = 0.0
+				paddingRight = 0.0
+				paddingTop = 0.0
+				paddingBottom = 0.0
+			]
+		]
+		for(path : map.paths){
+			generatePath(diagramRoot, path);
+		}
+		return diagramRoot;
+	}
+	
+	protected def SModelElement generatePath(SModelElement root, Path path){
+		
+		val startPoint = configSElement(TURNNode, path.startPoint.name, 'startpoint');
+		startPoint.layout = 'vbox';
+		startPoint.layoutOptions = new LayoutOptions [
+			paddingTop = 0.0
+			paddingBottom = 5.0
+			paddingLeft = 0.0
+			paddingRight = 0.0
+			resizeContainer = true
+		];
+		val SCompartment moduleHeadingCompartment = configSElement(SCompartment, startPoint.id + '-heading', 'comp');
+		moduleHeadingCompartment.layout = 'hbox';
+		startPoint.children.add(moduleHeadingCompartment);
+		val SLabel labelModule = configSElement(SLabel, startPoint.id + '-label', 'heading');
+		labelModule.text = path.startPoint.name;
+		moduleHeadingCompartment.children.add(labelModule);
+		root.children.add(startPoint);
+		return startPoint;
+		
 	}
 
 	def SModelRoot generateDiagram(Actor actor) {

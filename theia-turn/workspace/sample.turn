@@ -1,32 +1,9 @@
 urnModel example
 
-actor A#"Teacher" {
-	importance 100
-	softgoal Motivation#"Increaase Motivation" {
-        contributesTo Productivity correlated with make
-        dependsOn B.Guide
-	}
-    softgoal Productivity#"Increase Productivity" {
-       dependsOn Task
-	}
-    task Task#"Task"{   
-     contributesTo Motivation correlated with 90
-     dependsOn abc.Respect
-    }
+map Default {
+    start s -> end e.
 }
 
-actor B#"Student"{  
-    softgoal Guide#"Guide"
-    { }
-}
-
-actor abc#"Parent"{
-    goal Respect#"Respect"{}
-}
-
-
-
-strategy abc#"ABC"{
-    A.Motivation exceeding evaluation satisfied
-   
+map Default2 {
+    start s1 -> end e1.
 }

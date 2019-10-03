@@ -20,7 +20,7 @@ import {
     ResourceNodeView, GoalNodeView, SoftGoalNodeView,
     BeliefNodeView, TaskNodeView, IndicatorNodeView, HeaderCompartmentView,
     ModuleNodeView, SoftGoalTryNodeView, ContributeEdgeView,
-    CorrelationEdgeView, DecompositionEdgeView, DependencyEdgeView
+    CorrelationEdgeView, DecompositionEdgeView, DependencyEdgeView, StartPointNodeView
 } from "./views";
 import { TURNLabel, TURNNode } from "./models";
 import { TURNModelFactory } from "./model-factory";
@@ -55,6 +55,7 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     configureModelElement(context, 'html', HtmlRoot, HtmlRootView);
     configureModelElement(context, 'pre-rendered', PreRenderedElement, PreRenderedView);
     configureModelElement(context, ExpandButtonHandler.TYPE, SButton, ExpandButtonView);
+    configureModelElement(context, StartPointNodeView.TYPE, TURNNode, StartPointNodeView);
 
 });
 

@@ -13,3 +13,4 @@ export * from './decomposition.edge';
 export * from './dashed.edge';
 export * from './correlation.edge';
 export * from './contribute.edge';
+export * from './startpoint.node';
