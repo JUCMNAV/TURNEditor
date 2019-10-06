@@ -10,7 +10,7 @@ export class StartPointNodeView implements IView {
     static readonly TYPE = 'turnnode:startpoint';
 
     render(node: TURNNode, context: RenderingContext): VNode {
-        const vnode = <g class-sprotty-node={true}>
+        const vnode = <g class-sprotty-node={true} >
             {context.renderChildren(node)}
             <circle r="1em"/>
         </g>;

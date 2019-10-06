@@ -54,7 +54,6 @@ class TURNTag extends SShapeElement implements Layouting {
 	}
 }
 
-
 @Accessors 
 class MAPStartTag extends SShapeElement implements Layouting {
 	String layout

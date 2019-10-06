@@ -21,6 +21,7 @@ class TurnDiagramModule extends IdeDiagramModule {
 		TurnLayoutEngine
 	}
 	
+	//TODO: swap TurnDiagramGenerator with TurnDiagramOtherGenerator
 	def Class<? extends IDiagramGenerator> bindIDiagramGenerator() {
 		TurnDiagramGenerator
 	}
