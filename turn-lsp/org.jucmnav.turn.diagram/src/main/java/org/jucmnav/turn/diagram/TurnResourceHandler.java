@@ -26,8 +26,8 @@ public class TurnResourceHandler {
 	
 	private URNmodelElement findTurnElement(URNspec urnSpec, String name) {
 		URNmodelElement turnElement = null;
-		for(EObject obj : urnSpec.eContents()) {
-			EStructuralFeature nameFeature = obj.eClass().getEStructuralFeature("Name");
+		for(EObject obj : urnSpec.eContents()) {			
+			EStructuralFeature nameFeature = obj.eClass().getEStructuralFeature("name");
 			String objName = Objects.toString(obj.eGet(nameFeature), "");
 			if(name.equals(objName)){
 				turnElement = (URNmodelElement) obj;
