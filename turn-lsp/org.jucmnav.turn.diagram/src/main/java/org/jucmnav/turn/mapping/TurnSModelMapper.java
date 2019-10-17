@@ -31,18 +31,14 @@ public class TurnSModelMapper {
 		return mapURNmodelElementToSModel(urnModelElement);
 	}
 	
-	public static TurnSModel mapURNmodelElementToSModel(URNmodelElement urnModelElement) {
+	public static TurnSModel mapURNmodelElementToSModel(URNmodelElement urnModelElement) throws IllegalArgumentException {
 		TurnSModel turnSModel = null;
 		if(urnModelElement instanceof Actor) {
 			turnSModel = new ActorSModel((Actor) urnModelElement);
 		}else if(urnModelElement instanceof UCMmap) {
 			turnSModel = new UCMmapSModel((UCMmap) urnModelElement);
-		}else if(urnModelElement instanceof Contribution) {
-			turnSModel = new ContributionSModel((Contribution) urnModelElement);
-		}else if(urnModelElement instanceof Dependency) {
-			turnSModel = new DependencySModel((Dependency) urnModelElement);
-		}else if(urnModelElement instanceof Decomposition) {
-			turnSModel = new DecompositionSModel((Decomposition) urnModelElement);
+		}else {
+			throw new IllegalArgumentException("No corresponding SModel for given URN element.");
 		}
 		return turnSModel;
 	}

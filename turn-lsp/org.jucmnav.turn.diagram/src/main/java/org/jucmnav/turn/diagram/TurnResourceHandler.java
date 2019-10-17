@@ -1,6 +1,8 @@
 package org.jucmnav.turn.diagram;
 
 import java.util.Objects;
+
+import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.resource.XtextResource;
@@ -9,6 +11,8 @@ import org.jucmnav.turn.turn.URNspec;
 
 public class TurnResourceHandler {
 	
+	private static Logger LOGGER = Logger.getLogger(TurnResourceHandler.class);
+	
 	private XtextResource turnResource;
 
 	public TurnResourceHandler(XtextResource turnResource) {
@@ -16,7 +20,7 @@ public class TurnResourceHandler {
 	}
 	
 	public URNmodelElement getTurnElementFromName(String name){		
-		URNspec urnSpec = (URNspec) turnResource.getParseResult().getRootNode();		
+		URNspec urnSpec = (URNspec) turnResource.getParseResult().getRootNode().getSemanticElement();	
 		return findTurnElement(urnSpec, name);
 	}
 	

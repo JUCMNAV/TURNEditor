@@ -23,7 +23,7 @@ class TurnDiagramModule extends IdeDiagramModule {
 	
 	//TODO: swap TurnDiagramGenerator with TurnDiagramOtherGenerator
 	def Class<? extends IDiagramGenerator> bindIDiagramGenerator() {
-		TurnDiagramGenerator
+		TurnDiagramOtherGenerator
 	}
 	
 	override bindIPopupModelFactory() {
