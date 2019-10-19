@@ -25,6 +25,7 @@ import {
 import { TURNLabel, TURNNode } from "./models";
 import { TURNModelFactory } from "./model-factory";
 import {EndPointNodeView} from "./views/endpoint.node";
+import {ResponsibilityNodeView} from "./views/responsibility.node";
 
 const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
 
@@ -58,8 +59,7 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     configureModelElement(context, ExpandButtonHandler.TYPE, SButton, ExpandButtonView);
     configureModelElement(context, StartPointNodeView.TYPE, TURNNode, StartPointNodeView);
     configureModelElement(context, EndPointNodeView.TYPE, TURNNode, EndPointNodeView);
-
-
+    configureModelElement(context, ResponsibilityNodeView.TYPE, TURNNode, ResponsibilityNodeView);
 });
 
 export default function createContainer(widgetId: string): Container {

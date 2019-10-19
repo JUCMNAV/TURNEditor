@@ -14,7 +14,7 @@ export class GoalNodeView extends SoftGoalNodeView {
                   width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}
                   rx={Math.max(node.size.height * 0.5, 0)} ry={Math.max(node.size.height * 0.5, 0)} />
             {context.renderChildren(node)}
-        </g>
+        </g>;
         setAttr(vnode, 'class', node.cssClass);
         return vnode;
     }
