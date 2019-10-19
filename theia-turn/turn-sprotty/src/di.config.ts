@@ -26,6 +26,7 @@ import { TURNLabel, TURNNode } from "./models";
 import { TURNModelFactory } from "./model-factory";
 import {EndPointNodeView} from "./views/endpoint.node";
 import {ResponsibilityNodeView} from "./views/responsibility.node";
+import {StubNodeView} from "./views/stub.node";
 
 const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
 
@@ -60,6 +61,8 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     configureModelElement(context, StartPointNodeView.TYPE, TURNNode, StartPointNodeView);
     configureModelElement(context, EndPointNodeView.TYPE, TURNNode, EndPointNodeView);
     configureModelElement(context, ResponsibilityNodeView.TYPE, TURNNode, ResponsibilityNodeView);
+    configureModelElement(context, StubNodeView.TYPE, TURNNode, StubNodeView);
+
 });
 
 export default function createContainer(widgetId: string): Container {
