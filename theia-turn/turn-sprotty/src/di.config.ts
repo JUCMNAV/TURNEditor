@@ -20,7 +20,7 @@ import {
     ResourceNodeView, GoalNodeView, SoftGoalNodeView,
     BeliefNodeView, TaskNodeView, IndicatorNodeView, HeaderCompartmentView,
     ModuleNodeView, SoftGoalTryNodeView, ContributeEdgeView,
-    CorrelationEdgeView, DecompositionEdgeView, DependencyEdgeView, StartPointNodeView
+    CorrelationEdgeView, DecompositionEdgeView, DependencyEdgeView, StartPointNodeView, OrNodeView, AndNodeView
 } from "./views";
 import { TURNLabel, TURNNode } from "./models";
 import { TURNModelFactory } from "./model-factory";
@@ -62,8 +62,8 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     configureModelElement(context, EndPointNodeView.TYPE, TURNNode, EndPointNodeView);
     configureModelElement(context, ResponsibilityNodeView.TYPE, TURNNode, ResponsibilityNodeView);
     configureModelElement(context, StubNodeView.TYPE, TURNNode, StubNodeView);
-
-
+    configureModelElement(context, AndNodeView.TYPE, TURNNode, AndNodeView);
+    configureModelElement(context, OrNodeView.TYPE, TURNNode, OrNodeView);
 });
 
 export default function createContainer(widgetId: string): Container {
