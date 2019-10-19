@@ -63,6 +63,7 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     configureModelElement(context, ResponsibilityNodeView.TYPE, TURNNode, ResponsibilityNodeView);
     configureModelElement(context, StubNodeView.TYPE, TURNNode, StubNodeView);
 
+
 });
 
 export default function createContainer(widgetId: string): Container {
