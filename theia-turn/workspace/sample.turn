@@ -5,5 +5,16 @@ map Default {
 }
 
 map Default2 {
-    start s1 -> end e1.
+    start s1 -> X resp1 -> X resp2 -> or {
+        [condition] -> X resp3 -> end success.
+        [!condition] -> end failed.
+    }
+}
+
+map PaperExample {
+    start s2 -> X resp8 -> X resp4 -> or {
+        [condition && !condition2] -> X resp5 -> end e.
+        [condition && condition2] -> X resp6 -> ;
+        [else] -> X resp6 -> ;
+    } -> end e5.
 }
