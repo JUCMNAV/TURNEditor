@@ -15,7 +15,7 @@ export class AndNodeView implements IView {
             <rect class-body={true} class-selected={node.selected}
                   x={0} y={0}
                   width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}
-                  rx={Math.max(node.size.height * 0.5, 0)} ry={Math.max(node.size.height * 0.5, 0)} fill="none"/>
+                  fill="none"/>
             {context.renderChildren(node)}
         </g>;
         return vnode;
