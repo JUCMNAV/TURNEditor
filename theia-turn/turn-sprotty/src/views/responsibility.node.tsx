@@ -13,15 +13,15 @@ export class ResponsibilityNodeView implements IView {
         const TLx = 0;
         const TLy = 0;
         const BLx = 0;
-        const BLy = node.size.height;
-        const TRx = node.size.width;
+        const BLy = node.getDimension();
+        const TRx = node.getDimension();
         const TRy = 0;
-        const BRx = node.size.width;
-        const BRy = node.size.height;
+        const BRx = node.getDimension();
+        const BRy = node.getDimension();
 
         return <g class-sprotty-node="{true}" class-choice={true}>
-            <line x1={TLx} x2={BRx} y1={TLy} y2={BRy} fill="black"/>
-            <line x1={BLx} x2={TRx} y1={BLy} y2={TRy} fill="black"/>
+            <line x1={TLx} x2={BRx} y1={TLy} y2={BRy} fill="white"/>
+            <line x1={BLx} x2={TRx} y1={BLy} y2={TRy} fill="white"/>
             {context.renderChildren(node)}
         </g>;
     }

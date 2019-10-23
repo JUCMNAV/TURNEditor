@@ -14,7 +14,7 @@ export class AndNodeView implements IView {
         const vnode = <g class-sprotty-node={true}>
             <rect class-body={true} class-selected={node.selected}
                   x={0} y={0}
-                  width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}
+                  width={node.getDimension() / 2} height={node.getDimension()}
                   fill="none"/>
             {context.renderChildren(node)}
         </g>;

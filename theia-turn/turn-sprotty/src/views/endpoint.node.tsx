@@ -13,8 +13,8 @@ export class EndPointNodeView implements IView {
         const vnode = <g class-sprotty-node={true}>
             <rect class-body={true} class-selected={node.selected}
                   x={0} y={0}
-                  width={Math.max(0, node.size.width)} height={Math.max(0, node.size.height)}
-                  fill="black"/>
+                  width={node.getDimension() / 2} height={node.getDimension()}
+                  fill="white"/>
             {context.renderChildren(node)}
         </g>;
         return vnode;

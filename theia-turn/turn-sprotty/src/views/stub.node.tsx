@@ -10,8 +10,8 @@ export class StubNodeView implements IView {
     static readonly TYPE = 'turnnode:stub';
 
     render(node: TURNNode, context: RenderingContext): VNode {
-        const hwidth = (node.size.width / 2);
-        const hheight = (node.size.height / 2);
+        const hwidth = (node.getDimension() / 2);
+        const hheight = (node.getDimension() / 2);
         const initpos = "M 0 " + hheight;
         const TLedge = "l " + hwidth + " " + (-hheight);
         const TRedge = "l " + hwidth + " " + hheight;
@@ -21,7 +21,7 @@ export class StubNodeView implements IView {
         const diamond =  initpos + " " + TLedge + " " + TRedge + " " + BRedge + " " + BLedge;
         const vnode = <g class-sprotty-node={true} >
             {context.renderChildren(node)}
-            <path d={diamond} fill="none" stroke="black"/>
+            <path d={diamond} fill="none" stroke="white"/>
         </g>;
         return vnode;
     }
