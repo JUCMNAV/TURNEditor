@@ -6,6 +6,7 @@
  */
 
 import { Container, ContainerModule } from "inversify";
+
 import {
     ConsoleLogger, ExpandButtonHandler, ExpandButtonView, HtmlRoot,
     HtmlRootView, LogLevel, PreRenderedElement, PreRenderedView,
@@ -14,14 +15,17 @@ import {
     buttonModule, configureModelElement, defaultModule, expandModule,
     exportModule, fadeModule, hoverModule, modelSourceModule, moveModule,
     openModule, overrideViewerOptions, selectModule, undoRedoModule,
-    viewportModule, SButton
+    viewportModule, SButton, SNode
 } from 'sprotty/lib';
+
 import {
     ResourceNodeView, GoalNodeView, SoftGoalNodeView,
     BeliefNodeView, TaskNodeView, IndicatorNodeView, HeaderCompartmentView,
     ModuleNodeView, SoftGoalTryNodeView, ContributeEdgeView,
-    CorrelationEdgeView, DecompositionEdgeView, DependencyEdgeView, StartPointNodeView, OrNodeView, AndNodeView
+    CorrelationEdgeView, DecompositionEdgeView, DependencyEdgeView,
+    StartPointNodeView, OrNodeView, AndNodeView, PathBoxView
 } from "./views";
+
 import { TURNLabel, TURNNode } from "./models";
 import { TURNModelFactory } from "./model-factory";
 import {EndPointNodeView} from "./views/endpoint.node";
@@ -37,6 +41,7 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     const context = { bind, unbind, isBound, rebind };
 
     configureModelElement(context, 'graph', SGraph, SGraphView);
+    configureModelElement(context, 'pathbox', SNode, PathBoxView);
     configureModelElement(context, 'turnnode:goal', TURNNode, GoalNodeView);
     configureModelElement(context, 'turnnode:softgoal', TURNNode, SoftGoalNodeView);
     configureModelElement(context, 'turnnode:softgoaltry', TURNNode, SoftGoalTryNodeView);

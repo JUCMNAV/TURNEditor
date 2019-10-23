@@ -4,14 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jucmnav.turn.diagram.TurnDiagramGenerator;
-import org.jucmnav.turn.mapping.TurnSModelMapper;
 import org.jucmnav.turn.turn.Actor;
-import org.jucmnav.turn.turn.ElementLink;
-import org.jucmnav.turn.turn.IntentionalElement;
-import org.jucmnav.turn.turn.URNmodelElement;
-
-import io.typefox.sprotty.api.LayoutOptions;
-import io.typefox.sprotty.api.SGraph;
 import io.typefox.sprotty.api.SModelElement;
 
 public class ActorSModel implements TurnSModel {

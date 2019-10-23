@@ -20,10 +20,9 @@ public class TurnDiagramOtherGenerator implements IDiagramGenerator {
 		TurnResourceHandler turnResourceHandler = new TurnResourceHandler((XtextResource) resource);
 		TurnDiagramStateHandler turnDiagramStateHandler = new TurnDiagramStateHandler(state);
 		TurnSModelMapper turnSModelMapper = new TurnSModelMapper(turnResourceHandler, turnDiagramStateHandler);
-		TurnSModel turnSModel;
 		SModelRoot sModelRoot = null;
 		try {
-			turnSModel = turnSModelMapper.mapTurnSourceToSModel();
+			TurnSModel turnSModel = turnSModelMapper.mapTurnSourceToSModel();
 			sModelRoot = (SModelRoot) turnSModel.generate();
 		}catch(IllegalArgumentException e) {
 			LOGGER.warn(e);

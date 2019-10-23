@@ -20,3 +20,4 @@ export * from './stub.node';
 export * from './connection.edge';
 export * from './or.node';
 export * from './and.node';
+export * from './pathbox';
