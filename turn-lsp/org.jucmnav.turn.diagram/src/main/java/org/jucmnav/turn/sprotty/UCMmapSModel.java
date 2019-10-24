@@ -36,7 +36,7 @@ public class UCMmapSModel implements TurnSModel {
 		List<SModelElement> children = new ArrayList<>();	
 		for(Path path : ucmMap.getPaths()) {
 			PathSModel pathSModel = new PathSModel(path);
-			children.add(pathSModel.generate());
+			children.addAll(pathSModel.generateChildren());
 		}
 		for(ComponentRef compRef : ucmMap.getComponents()) {
 			ComponentRefSModel compRefSModel = new ComponentRefSModel(compRef);

@@ -21,7 +21,7 @@ public class StartPointSModel implements TurnSModel {
 	public SModelElement generate() {
 		return new TURNNode(s -> {
 			s.setType(TYPE);
-			s.setId(startPoint.getLongName().getLongname());
+			s.setId(Integer.toHexString(startPoint.hashCode()));
 			s.setLayoutOptions(getLayoutOptions());
 			s.setChildren(generateChildren());
 		});

@@ -18,7 +18,7 @@ public class EndPointSModel implements TurnSModel {
 	public SModelElement generate() {
 		return new TURNNode(end -> {
 			end.setType(TYPE);
-			end.setId(endPoint.getLongName().getLongname());
+			end.setId(Integer.toHexString(endPoint.hashCode()));
 			end.setLayoutOptions(getLayoutOptions());
 			end.setChildren(generateChildren());
 		});

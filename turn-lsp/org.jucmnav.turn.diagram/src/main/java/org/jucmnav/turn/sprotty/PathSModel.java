@@ -1,6 +1,7 @@
 package org.jucmnav.turn.sprotty;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.jucmnav.turn.mapping.TurnSModelMapper;
 import org.jucmnav.turn.turn.EndpointWithConnect;
@@ -9,27 +10,16 @@ import org.jucmnav.turn.turn.PathBody;
 import org.jucmnav.turn.turn.PathBodyNode;
 import org.jucmnav.turn.turn.PathBodyNodes;
 import org.jucmnav.turn.turn.URNmodelElement;
-import io.typefox.sprotty.api.LayoutOptions;
+
+import io.typefox.sprotty.api.SEdge;
 import io.typefox.sprotty.api.SModelElement;
-import io.typefox.sprotty.api.SNode;
 
 public class PathSModel implements TurnSModel {
-	
-	private static final String TYPE = "pathbox";
+
 	private Path path;
 	
 	public PathSModel(Path path) {
 		this.path = path;
-	}
-
-	@Override
-	public SModelElement generate() {
-		return new SNode(p -> {
-			p.setType(TYPE);
-			p.setId(Integer.toHexString(path.hashCode()));
-			p.setLayoutOptions(getLayoutOptions());
-			p.setChildren(generateChildren());
-		});
 	}
 
 	@Override
@@ -47,11 +37,36 @@ public class PathSModel implements TurnSModel {
 			children.add(turnSModel.generate());
 		}
 
-		children.add(generateEndPathElementSModelElement());	
+		children.add(generateEndPathElementSModelElement());
+		
+		children = generateNodeConnections(children);
 		
 		return children;
 	}
 	
+	private List<SModelElement> generateNodeConnections(List<SModelElement> children) {
+		
+		List<SModelElement> nodeConnections = new ArrayList<>();
+		
+		SModelElement source;
+		SModelElement target;
+		
+		for(int i = 0; i < children.size()-1; i++) {
+			source = children.get(i);
+			target = children.get(i+1);
+			SEdge edge = new SEdge();
+			edge.setType("edge:connection");
+			edge.setId(String.format("%s-to-%s", source.getId(), target.getId()));
+			edge.setSourceId(source.getId());
+			edge.setTargetId(target.getId());
+			nodeConnections.add(edge);
+		}
+		
+		children.addAll(nodeConnections);
+		
+		return children;
+	}
+
 	private SModelElement generateEndPathElementSModelElement() {
 		
 		URNmodelElement endPathModelElement = null;
@@ -74,18 +89,11 @@ public class PathSModel implements TurnSModel {
 		TurnSModel turnSModel = TurnSModelMapper.mapURNmodelElementToSModel(endPathModelElement);
 		return turnSModel.generate();
 	}
-	
-	//TODO: adjust this!
-	private LayoutOptions getLayoutOptions() {
-		return new LayoutOptions(options -> {
-			options.setHAlign("center");
-			options.setHGap(0.0);
-			options.setVGap(10.0);
-			options.setPaddingLeft(0.0);
-			options.setPaddingRight(0.0);
-			options.setPaddingTop(0.0);
-			options.setPaddingBottom(0.0);
-		});
+
+	@Override
+	public SModelElement generate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
