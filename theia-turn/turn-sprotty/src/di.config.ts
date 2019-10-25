@@ -41,6 +41,7 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     const context = { bind, unbind, isBound, rebind };
 
     configureModelElement(context, 'graph', SGraph, SGraphView);
+    configureModelElement(context, 'ucm', SGraph, SGraphView);
     configureModelElement(context, 'pathbox', SNode, PathBoxView);
     configureModelElement(context, 'turnnode:goal', TURNNode, GoalNodeView);
     configureModelElement(context, 'turnnode:softgoal', TURNNode, SoftGoalNodeView);
