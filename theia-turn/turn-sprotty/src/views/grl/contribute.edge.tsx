@@ -1,13 +1,12 @@
 /** @jsx svg */
 
-import {Point, RenderingContext, SEdge} from "sprotty/lib";
-import {DashedEdgeView} from "./dashed.edge";
+import { Point, PolylineEdgeView, RenderingContext, SEdge} from "sprotty/lib";
 import { VNode } from "snabbdom/vnode";
-import { svg } from 'snabbdom-jsx';
 import {CompositionEdgeView} from "./composition.edge";
-import {angle} from "../views-helper";
+import { svg } from 'snabbdom-jsx';
+import {angle} from "../../views-helper";
 
-export class CorrelationEdgeView extends DashedEdgeView {
+export class ContributeEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[0];
         const p2 = segments[1];

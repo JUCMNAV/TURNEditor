@@ -3,7 +3,7 @@
 import { svg } from 'snabbdom-jsx';
 import {Point, PolylineEdgeView, RenderingContext, SEdge} from "sprotty/lib";
 import { VNode } from "snabbdom/vnode";
-import {angle} from "../views-helper";
+import {angle} from "../../views-helper";
 
 export class DecompositionEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {

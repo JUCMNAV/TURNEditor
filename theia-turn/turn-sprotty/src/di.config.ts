@@ -28,9 +28,9 @@ import {
 
 import { TURNLabel, TURNNode } from "./models";
 import { TURNModelFactory } from "./model-factory";
-import {EndPointNodeView} from "./views/endpoint.node";
-import {ResponsibilityNodeView} from "./views/responsibility.node";
-import {StubNodeView} from "./views/stub.node";
+import {EndPointNodeView} from "./views/ucm/endpoint.node";
+import {ResponsibilityNodeView} from "./views/ucm/responsibility.node";
+import {StubNodeView} from "./views/ucm/stub.node";
 
 const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
 

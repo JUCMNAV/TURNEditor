@@ -2,7 +2,7 @@
 
 import { svg } from 'snabbdom-jsx';
 import {IView, RenderingContext, setAttr} from "sprotty/lib";
-import {TURNNode} from "../models";
+import {TURNNode} from "../../models";
 import { VNode } from "snabbdom/vnode";
 
 export class SoftGoalTryNodeView implements IView {
