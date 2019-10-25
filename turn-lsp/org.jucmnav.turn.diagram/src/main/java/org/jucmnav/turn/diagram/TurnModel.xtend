@@ -7,6 +7,7 @@ import io.typefox.sprotty.server.xtext.tracing.Traceable
 import org.eclipse.xtend.lib.annotations.Accessors
 import io.typefox.sprotty.api.SShapeElement
 import io.typefox.sprotty.api.Layouting
+import java.util.function.Consumer
 
 @Accessors
 class TURNNodeClassified extends SNode implements Traceable {
@@ -17,6 +18,10 @@ class TURNNodeClassified extends SNode implements Traceable {
 @Accessors
 class TURNNode extends TURNNodeClassified {
 	Boolean expanded
+	new() {}
+	new(Consumer<TURNNode> initializer) {
+		initializer.accept(this)
+	}
 }
 
 @Accessors
@@ -53,7 +58,6 @@ class TURNTag extends SShapeElement implements Layouting {
 		initializer.apply(this)
 	}
 }
-
 
 @Accessors 
 class MAPStartTag extends SShapeElement implements Layouting {

@@ -15,6 +15,10 @@ export class TURNNode extends RectangularNode {
     trace: string | undefined;
     strokeWidth = 1;
 
+    getDimension(): number {
+        return 50;
+    }
+
     hasFeature(feature: symbol): boolean {
         return feature === selectFeature || feature === boundsFeature
             || feature === layoutContainerFeature || feature === fadeFeature || feature === hoverFeedbackFeature
