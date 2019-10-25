@@ -14,7 +14,7 @@ public class UCMmapSModel implements TurnSModel {
 
 	private static Logger LOGGER = Logger.getLogger(UCMmapSModel.class);
 	
-	private static final String TYPE = "graph";
+	private static final String TYPE = "UCM";
 	private UCMmap ucmMap;
 	
 	public UCMmapSModel(UCMmap ucmMap) {
