@@ -24,57 +24,48 @@ import org.eclipse.elk.core.options.Alignment
 import org.eclipse.elk.core.options.HierarchyHandling
 import org.eclipse.elk.alg.layered.options.GreedySwitchType
 
+
 class TurnLayoutEngine extends ElkLayoutEngine {
 	
 	static val LOG = Logger.getLogger(TurnLayoutEngine);
 	
 	override layout(SModelRoot root) {
-		if (root instanceof SGraph ) {
-			if(root.getType().equals('graph')) {
-				val configurator = new SprottyLayoutConfigurator
-				configurator.configureByType('graph')
-				.setProperty(CoreOptions.DIRECTION, Direction.DOWN)
-				.setProperty(CoreOptions.SPACING_NODE_NODE, 30.0)
-				.setProperty(LayeredOptions.SPACING_EDGE_NODE_BETWEEN_LAYERS, 30.0)
-				// TODO: enable when ELK is fixed: https://github.com/eclipse/elk/issues/226
-				//.setProperty(CoreOptions.HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
-				//.setProperty(LayeredOptions.CROSSING_MINIMIZATION_GREEDY_SWITCH_TYPE, GreedySwitchType.OFF)
-				configurator.configureByType('node:module')
-				.setProperty(CoreOptions.DIRECTION, Direction.DOWN)
-				.setProperty(CoreOptions.SPACING_NODE_NODE, 100.0)
-				.setProperty(CoreOptions.SPACING_EDGE_NODE, 30.0)
-				.setProperty(CoreOptions.SPACING_EDGE_EDGE, 15.0)
-				.setProperty(LayeredOptions.SPACING_EDGE_NODE_BETWEEN_LAYERS, 30.0)
-				.setProperty(LayeredOptions.SPACING_NODE_NODE_BETWEEN_LAYERS, 100.0)
-				.setProperty(CoreOptions.PADDING, new ElkPadding(50))
-				layout(root, configurator)
-			} else if(root.getType().equals('ucm')) {
-				
-				val configurator = new SprottyLayoutConfigurator
-				
-				configurator.configureByType('ucm')
-				.setProperty(CoreOptions.ALIGNMENT, Alignment.CENTER)
-				.setProperty(CoreOptions.DIRECTION, Direction.RIGHT)
-				.setProperty(CoreOptions.PADDING, new ElkPadding(120))
-				.setProperty(CoreOptions.PROGRESS_BAR, true)
-				.setProperty(CoreOptions.ZOOM_TO_FIT, true)
-				.setProperty(CoreOptions.EDGE_THICKNESS, 4.0)
-				.setProperty(CoreOptions.HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
-				.setProperty(LayeredOptions.CROSSING_MINIMIZATION_GREEDY_SWITCH_TYPE, GreedySwitchType.TWO_SIDED)
-				
-				configurator.configureByType("edge:connection")
-				.setProperty(CoreOptions.EDGE_THICKNESS, 10.0);
-				
-				configurator.configureByType("turnnode:startpoint")
-				.setProperty(CoreOptions.ALIGNMENT, Alignment.LEFT)
-				.setProperty(CoreOptions.PADDING, new ElkPadding(120))
-				
-				configurator.configureByType("turnnode:endpoint")
-				.setProperty(CoreOptions.ALIGNMENT, Alignment.RIGHT)
-				.setProperty(CoreOptions.PADDING, new ElkPadding(120))
+		if (root instanceof SGraph) {
 
-				layout(root, configurator)
-			}
+			val configurator = new SprottyLayoutConfigurator
+			
+			// ----------- GRL configuration -----------
+			configurator.configureByType('graph')
+			.setProperty(CoreOptions.DIRECTION, Direction.DOWN)
+			.setProperty(CoreOptions.SPACING_NODE_NODE, 30.0)
+			.setProperty(LayeredOptions.SPACING_EDGE_NODE_BETWEEN_LAYERS, 30.0)
+			// TODO: enable when ELK is fixed: https://github.com/eclipse/elk/issues/226
+			//.setProperty(CoreOptions.HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
+			//.setProperty(LayeredOptions.CROSSING_MINIMIZATION_GREEDY_SWITCH_TYPE, GreedySwitchType.OFF)
+
+			// ----------- UCM configuration -----------
+			configurator.configureByType('ucm')
+			.setProperty(CoreOptions.DIRECTION, Direction.RIGHT)
+			.setProperty(CoreOptions.SPACING_NODE_NODE, 30.0)
+			.setProperty(LayeredOptions.SPACING_EDGE_NODE_BETWEEN_LAYERS, 30.0)
+			
+			// TUCM start point configuration
+			configurator.configureByType('turnnode:startpoint')
+			.setProperty(CoreOptions.ALIGNMENT, Alignment.LEFT)
+			
+			// ----------- Node module configuration -----------
+			// TODO: check if we need to configure node:module
+			configurator.configureByType('node:module')
+			.setProperty(CoreOptions.DIRECTION, Direction.DOWN)
+			.setProperty(CoreOptions.SPACING_NODE_NODE, 100.0)
+			.setProperty(CoreOptions.SPACING_EDGE_NODE, 30.0)
+			.setProperty(CoreOptions.SPACING_EDGE_EDGE, 15.0)
+			.setProperty(LayeredOptions.SPACING_EDGE_NODE_BETWEEN_LAYERS, 30.0)
+			.setProperty(LayeredOptions.SPACING_NODE_NODE_BETWEEN_LAYERS, 100.0)
+			.setProperty(CoreOptions.PADDING, new ElkPadding(50))
+			
+			// compute the layout
+			layout(root, configurator)
 		}
 	}
 	
