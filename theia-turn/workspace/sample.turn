@@ -1,7 +1,7 @@
 urnModel example
 
 map Default {
-    start s -> end e.
+    start s -> X resp -> end e.
 }
 
 map Default2 {

@@ -195,16 +195,12 @@ export class DiagramCommandContribution extends AbstractViewContribution<Outline
         const outlineViewWidget = <OutlineViewWidget>widget;
         const { model } = outlineViewWidget;
         const def = model.selectedNodes;
-        console.log("Model Definition of OutlineViewWidget: " + def.toString());
         for (let node of def) {
             if (node !== undefined) {
-                console.log("Node: " + node.id);
                 const editor = this.editorManager.currentEditor;
                 if (editor !== undefined) {
                     const uri = editor.editor.uri;
                     const encodedURI = uri.withFragment(node.name);
-                    console.log("Encoded URI: " + encodedURI);
-                    console.log("Node name: " + node.name);
                     const openers = this.openerService.getOpeners(encodedURI);
                     openers.then(openers => {
                         const opener = openers.find(opener => opener instanceof DiagramManagerImpl);

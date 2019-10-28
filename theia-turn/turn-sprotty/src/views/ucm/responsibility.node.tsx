@@ -19,9 +19,9 @@ export class ResponsibilityNodeView implements IView {
         const BRx = node.getDimension();
         const BRy = node.getDimension();
 
-        return <g class-sprotty-node="{true}" class-choice={true}>
-            <line x1={TLx} x2={BRx} y1={TLy} y2={BRy} fill="white"/>
-            <line x1={BLx} x2={TRx} y1={BLy} y2={TRy} fill="white"/>
+        return <g class-sprotty-node="{true}">
+            <line x1={TLx} x2={BRx} y1={TLy} y2={BRy} fill="white" style={({strokeWidth: 10})}/>
+            <line x1={BLx} x2={TRx} y1={BLy} y2={TRy} fill="white" style={({strokeWidth: 10})}/>
             {context.renderChildren(node)}
         </g>;
     }

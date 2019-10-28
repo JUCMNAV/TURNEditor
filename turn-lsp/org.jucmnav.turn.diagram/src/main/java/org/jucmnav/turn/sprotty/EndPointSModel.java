@@ -32,7 +32,6 @@ public class EndPointSModel implements TurnSModel {
 	
 	private LayoutOptions getLayoutOptions() {
 		return new LayoutOptions(options -> {
-			//TODO: set layoutOptions
 		});
 	}
 

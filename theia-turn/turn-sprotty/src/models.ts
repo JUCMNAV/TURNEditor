@@ -34,6 +34,10 @@ export class MAPStartNode extends CircularNode {
     status?: string;
     kernelNr: number;
 
+    getDimension(): number {
+        return 50;
+    }
+
     hasFeature(feature: symbol): boolean {
         if (feature === moveFeature)
             return false;

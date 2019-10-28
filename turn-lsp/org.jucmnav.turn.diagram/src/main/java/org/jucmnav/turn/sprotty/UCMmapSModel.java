@@ -47,9 +47,9 @@ public class UCMmapSModel implements TurnSModel {
 	
 	private LayoutOptions getRootLayoutOptions() {
 		return new LayoutOptions(options -> {
-			options.setHAlign("left");
+			options.setHAlign("center");
 			options.setHGap(0.0);
-			options.setVGap(10.0);
+			options.setVGap(0.0);
 			options.setPaddingLeft(0.0);
 			options.setPaddingRight(0.0);
 			options.setPaddingTop(0.0);
