@@ -68,8 +68,10 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     configureModelElement(context, EndPointNodeView.TYPE, TURNNode, EndPointNodeView);
     configureModelElement(context, ResponsibilityNodeView.TYPE, TURNNode, ResponsibilityNodeView);
     configureModelElement(context, StubNodeView.TYPE, TURNNode, StubNodeView);
-    configureModelElement(context, AndNodeView.TYPE, TURNNode, AndNodeView);
-    configureModelElement(context, OrNodeView.TYPE, TURNNode, OrNodeView);
+    configureModelElement(context, AndNodeView.TYPE_JOIN, TURNNode, AndNodeView);
+    configureModelElement(context, AndNodeView.TYPE_FORK, TURNNode, AndNodeView);
+    configureModelElement(context, OrNodeView.TYPE_JOIN, TURNNode, OrNodeView);
+    configureModelElement(context, OrNodeView.TYPE_FORK, TURNNode, OrNodeView);
     configureModelElement(context, ConnectionEdgeView.TYPE, SEdge, ConnectionEdgeView);
 });
 

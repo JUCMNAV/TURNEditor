@@ -26,7 +26,7 @@ public class EndPointSModel implements TurnSModel {
 
 	@Override
 	public List<SModelElement> generateChildren() {
-		// TODO Auto-generated method stub
+		// TODO Add label
 		return null;
 	}
 	

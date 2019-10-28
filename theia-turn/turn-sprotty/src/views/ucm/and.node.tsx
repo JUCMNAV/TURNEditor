@@ -7,7 +7,8 @@ import { VNode } from "snabbdom/vnode";
 
 export class AndNodeView implements IView {
 
-    static readonly TYPE = 'turnnode:and';
+    static readonly TYPE_JOIN = 'turnnode:andJoin';
+    static readonly TYPE_FORK = 'turnnode:andFork';
 
     // TODO: implement dynamic sizing based on # of children
     render(node: TURNNode, context: RenderingContext): VNode {
