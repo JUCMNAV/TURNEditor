@@ -29,8 +29,4 @@ class TurnDiagramModule extends IdeDiagramModule {
 		TurnPopupModelFactory
 	}
 	
-	override bindIDiagramExpansionListener() {
-		TurnDiagramExpansionListener
-	}
-	
 }

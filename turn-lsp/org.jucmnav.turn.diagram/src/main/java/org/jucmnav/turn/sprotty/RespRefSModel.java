@@ -5,6 +5,7 @@ import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.RespRef;
 import io.typefox.sprotty.api.LayoutOptions;
 import io.typefox.sprotty.api.SModelElement;
+import io.typefox.sprotty.api.SPort;
 
 public class RespRefSModel implements TurnSModel {
 
@@ -19,7 +20,7 @@ public class RespRefSModel implements TurnSModel {
 	public SModelElement generate() {
 		return new TURNNode(r -> {
 			r.setType(TYPE);
-			r.setId(respRef.getLongName().getLongname());
+			r.setId(Integer.toHexString(respRef.hashCode()));
 			r.setLayoutOptions(getLayoutOptions());
 			r.setChildren(generateChildren());
 		});
@@ -27,7 +28,6 @@ public class RespRefSModel implements TurnSModel {
 
 	@Override
 	public List<SModelElement> generateChildren() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

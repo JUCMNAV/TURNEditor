@@ -26,7 +26,7 @@ import {
     StartPointNodeView, OrNodeView, AndNodeView, PathBoxView, ConnectionEdgeView
 } from "./views";
 
-import { TURNLabel, TURNNode } from "./models";
+import {MAPStartNode, TURNLabel, TURNNode} from "./models";
 import { TURNModelFactory } from "./model-factory";
 import {EndPointNodeView} from "./views/ucm/endpoint.node";
 import {ResponsibilityNodeView} from "./views/ucm/responsibility.node";
@@ -35,7 +35,7 @@ import {StubNodeView} from "./views/ucm/stub.node";
 const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
 
     rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
-    rebind(TYPES.LogLevel).toConstantValue(LogLevel.warn);
+    rebind(TYPES.LogLevel).toConstantValue(LogLevel.log);
     rebind(TYPES.IModelFactory).to(TURNModelFactory).inSingletonScope();
 
     const context = { bind, unbind, isBound, rebind };
@@ -64,7 +64,7 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     configureModelElement(context, 'html', HtmlRoot, HtmlRootView);
     configureModelElement(context, 'pre-rendered', PreRenderedElement, PreRenderedView);
     configureModelElement(context, ExpandButtonHandler.TYPE, SButton, ExpandButtonView);
-    configureModelElement(context, StartPointNodeView.TYPE, TURNNode, StartPointNodeView);
+    configureModelElement(context, StartPointNodeView.TYPE, MAPStartNode, StartPointNodeView);
     configureModelElement(context, EndPointNodeView.TYPE, TURNNode, EndPointNodeView);
     configureModelElement(context, ResponsibilityNodeView.TYPE, TURNNode, ResponsibilityNodeView);
     configureModelElement(context, StubNodeView.TYPE, TURNNode, StubNodeView);

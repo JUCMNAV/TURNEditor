@@ -92,8 +92,6 @@ class TurnLanguageServerExtension extends IdeLanguageServerExtension {
 			resultList.filter[value !== null].forEach [
 
 				val state = key.diagramState
-				//val ds_currentModel = key.diagramState.currentModel
-				//key.model = ds_currentModel
 				key.setModel(value)
 
 				val currentM2 = state.getCurrentModel()
