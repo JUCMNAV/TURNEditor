@@ -1,0 +1,41 @@
+urnModel example
+
+map Default {
+    start s -> end e.
+}
+
+map Responsibility {
+    start s -> X resp1 -> X resp2 -> end e.
+}
+
+map OrImplicit {
+    start s -> or {
+        [condition] -> X r -> ;
+        [!condition] -> ;
+    } -> end e.
+}
+
+map OrExplicit {
+    start s -> or {
+        [condition] -> X r -> end e1.
+        [!condition] -> end e2.
+    }
+}
+
+map And {
+    start s -> X r1 -> and {
+        * -> X r2 -> ;
+        * -> X r3 -> ;
+    } -> end e.
+}
+
+map AndOr {
+
+}
+map PaperExample {
+    start s -> X r1 -> X r2 -> or {
+        [condition && !condition2] -> X r3 -> end e.
+        [condition && condition2] -> X r4 -> ;
+        [else] -> X r5 -> ;
+    } -> end e.
+}
