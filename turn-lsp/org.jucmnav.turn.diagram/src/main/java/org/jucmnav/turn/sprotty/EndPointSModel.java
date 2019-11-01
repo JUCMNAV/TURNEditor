@@ -34,5 +34,10 @@ public class EndPointSModel implements TurnSModel {
 		return new LayoutOptions(options -> {
 		});
 	}
+	@Override
+	public List<SModelElement> generateChildrenForSGraph() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

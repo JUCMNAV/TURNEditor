@@ -35,8 +35,8 @@ public class UCMmapSModel implements TurnSModel {
 	public List<SModelElement> generateChildren() {		
 		List<SModelElement> children = new ArrayList<>();	
 		for(Path path : ucmMap.getPaths()) {
-			PathSModel pathSModel = new PathSModel(path);
-			children.addAll(pathSModel.generateChildren());
+			PathBodySModel pathBodySModel = new PathBodySModel(path.getStartPoint(), path.getPathBody());
+			children.addAll(pathBodySModel.generateChildrenForSGraph());
 		}
 		for(ComponentRef compRef : ucmMap.getComponents()) {
 			ComponentRefSModel compRefSModel = new ComponentRefSModel(compRef);
@@ -55,6 +55,12 @@ public class UCMmapSModel implements TurnSModel {
 			options.setPaddingTop(0.0);
 			options.setPaddingBottom(0.0);
 		});
+	}
+
+	@Override
+	public List<SModelElement> generateChildrenForSGraph() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

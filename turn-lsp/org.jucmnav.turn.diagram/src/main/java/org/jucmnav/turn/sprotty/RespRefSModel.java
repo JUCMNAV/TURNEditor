@@ -5,7 +5,6 @@ import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.RespRef;
 import io.typefox.sprotty.api.LayoutOptions;
 import io.typefox.sprotty.api.SModelElement;
-import io.typefox.sprotty.api.SPort;
 
 public class RespRefSModel implements TurnSModel {
 
@@ -36,6 +35,12 @@ public class RespRefSModel implements TurnSModel {
 		return new LayoutOptions(options ->{
 			//TODO: set layoutOptions
 		});
+	}
+
+	@Override
+	public List<SModelElement> generateChildrenForSGraph() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

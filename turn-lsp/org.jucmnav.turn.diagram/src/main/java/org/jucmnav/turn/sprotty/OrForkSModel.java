@@ -1,10 +1,11 @@
 package org.jucmnav.turn.sprotty;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.OrFork;
+import org.jucmnav.turn.turn.RegularOrFork;
 
 import io.typefox.sprotty.api.LayoutOptions;
 import io.typefox.sprotty.api.SModelElement;
@@ -22,7 +23,7 @@ public class OrForkSModel implements TurnSModel {
 	public SModelElement generate() {
 		return new TURNNode(fork -> {
 			fork.setType(TYPE);
-			fork.setId(Objects.isNull(orFork.getLongName())? null : orFork.getLongName().getLongname());
+			fork.setId(Integer.toHexString(orFork.hashCode()));
 			fork.setLayoutOptions(getLayoutOptions());
 			fork.setChildren(generateChildren());
 		});
@@ -38,6 +39,16 @@ public class OrForkSModel implements TurnSModel {
 		return new LayoutOptions(options ->{
 			//TODO: set layoutOptions
 		});
+	}
+
+	@Override
+	public List<SModelElement> generateChildrenForSGraph() {
+		List<SModelElement> graphChildren = new ArrayList<>();
+		for(RegularOrFork rof : orFork.getBody().getRegularBody()) {
+			PathBodySModel pathBodySModel = new PathBodySModel(orFork, rof.getPathBody());
+			graphChildren.addAll(pathBodySModel.generateChildrenForSGraph());
+		}
+		return graphChildren;
 	}
 
 }

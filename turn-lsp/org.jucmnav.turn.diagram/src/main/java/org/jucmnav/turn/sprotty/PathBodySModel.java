@@ -1,11 +1,10 @@
 package org.jucmnav.turn.sprotty;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
 import org.jucmnav.turn.mapping.TurnSModelMapper;
 import org.jucmnav.turn.turn.EndpointWithConnect;
-import org.jucmnav.turn.turn.Path;
 import org.jucmnav.turn.turn.PathBody;
 import org.jucmnav.turn.turn.PathBodyNode;
 import org.jucmnav.turn.turn.PathBodyNodes;
@@ -14,34 +13,51 @@ import org.jucmnav.turn.turn.URNmodelElement;
 import io.typefox.sprotty.api.SEdge;
 import io.typefox.sprotty.api.SModelElement;
 
-public class PathSModel implements TurnSModel {
-
-	private Path path;
+public class PathBodySModel implements TurnSModel {
 	
-	public PathSModel(Path path) {
-		this.path = path;
+	private URNmodelElement startElement;
+	private PathBody pathBody;
+	
+	public PathBodySModel(URNmodelElement startElement, PathBody pathBody) {
+		this.startElement = startElement;
+		this.pathBody = pathBody;
+	}
+
+	@Override
+	public SModelElement generate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<SModelElement> generateChildren() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<SModelElement> generateChildrenForSGraph() {
+		List<SModelElement> pathChildren = new ArrayList<>();
+		List<SModelElement> graphChildren = new ArrayList<>();
 		
-		List<SModelElement> children = new ArrayList<>();
-		PathBody pathBody = path.getPathBody();
-		
-		StartPointSModel startPointSModel = new StartPointSModel(path.getStartPoint());
-		children.add(startPointSModel.generate());
+		TurnSModel startElementSModel = TurnSModelMapper.mapURNmodelElementToSModel(startElement);
+		SModelElement startPointSModelElement = startElementSModel.generate();
+		pathChildren.add(startPointSModelElement);
+		graphChildren.add(startPointSModelElement);
 		
 		List<PathBodyNode> pathBodyNodes = ((PathBodyNodes)pathBody).getPathNodes();
 		for(PathBodyNode node : pathBodyNodes) {
 			TurnSModel turnSModel = TurnSModelMapper.mapURNmodelElementToSModel((URNmodelElement)node);
-			children.add(turnSModel.generate());
+			pathChildren.add(turnSModel.generate());
 		}
-
-		children.add(generateEndPathElementSModelElement());
 		
-		children = generateNodeConnections(children);
+		TurnSModel regularEndSModel = getURNSModel();
+		pathChildren.add(regularEndSModel.generate());
+		graphChildren.addAll(regularEndSModel.generateChildrenForSGraph());
 		
-		return children;
+		graphChildren.addAll(generateNodeConnections(pathChildren));
+		
+		return graphChildren;
 	}
 	
 	private List<SModelElement> generateNodeConnections(List<SModelElement> children) {
@@ -67,16 +83,14 @@ public class PathSModel implements TurnSModel {
 		return children;
 	}
 
-	private SModelElement generateEndPathElementSModelElement() {
+	private TurnSModel getURNSModel() {
 		
 		URNmodelElement endPathModelElement = null;
-		PathBody pathBody = path.getPathBody();
 		
 		if(pathBody.getPathEnd() != null) {
 			//TODO: Issue #13 - EndpointWithConnect and EndPoint not a URNmodelElement
 			if(pathBody.getPathEnd() instanceof EndpointWithConnect) {
-				EndPointSModel endpointSModel = new EndPointSModel(((EndpointWithConnect) pathBody.getPathEnd()).getRegularEnd());
-				return endpointSModel.generate();
+				return new EndPointSModel(((EndpointWithConnect) pathBody.getPathEnd()).getRegularEnd());
 			}else {
 				endPathModelElement = (URNmodelElement) pathBody.getPathEnd();
 			}		
@@ -86,14 +100,7 @@ public class PathSModel implements TurnSModel {
 			endPathModelElement = (URNmodelElement) pathBody.getReferencedStub();
 		}
 		
-		TurnSModel turnSModel = TurnSModelMapper.mapURNmodelElementToSModel(endPathModelElement);
-		return turnSModel.generate();
-	}
-
-	@Override
-	public SModelElement generate() {
-		// TODO Auto-generated method stub
-		return null;
+		return TurnSModelMapper.mapURNmodelElementToSModel(endPathModelElement);
 	}
 
 }

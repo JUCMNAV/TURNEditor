@@ -31,7 +31,7 @@ class TurnLayoutEngine extends ElkLayoutEngine {
 	
 	override layout(SModelRoot root) {
 		if (root instanceof SGraph) {
-
+			
 			val configurator = new SprottyLayoutConfigurator
 			
 			// ----------- GRL configuration -----------
@@ -44,18 +44,24 @@ class TurnLayoutEngine extends ElkLayoutEngine {
 
 			// ----------- UCM configuration -----------
 			configurator.configureByType('ucm')
+			.setProperty(CoreOptions.ALIGNMENT, Alignment.CENTER)
 			.setProperty(CoreOptions.DIRECTION, Direction.RIGHT)
-			.setProperty(CoreOptions.SPACING_NODE_NODE, 30.0)
-			.setProperty(LayeredOptions.SPACING_EDGE_NODE_BETWEEN_LAYERS, 30.0)
+			.setProperty(CoreOptions.PADDING, new ElkPadding(120))
+			.setProperty(CoreOptions.PROGRESS_BAR, true)
+			.setProperty(CoreOptions.ZOOM_TO_FIT, true)
+			.setProperty(CoreOptions.EDGE_THICKNESS, 4.0)
 			.setProperty(CoreOptions.HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
-			.setProperty(LayeredOptions.CROSSING_MINIMIZATION_GREEDY_SWITCH_TYPE, GreedySwitchType.OFF)
+			.setProperty(LayeredOptions.CROSSING_MINIMIZATION_GREEDY_SWITCH_TYPE, GreedySwitchType.TWO_SIDED);
 			
 			// TUCM start point configuration
 			configurator.configureByType('turnnode:startpoint')
-			.setProperty(CoreOptions.ALIGNMENT, Alignment.LEFT)
+			.setProperty(CoreOptions.ALIGNMENT, Alignment.LEFT);
+			
+			configurator.configureByType("turnnode:endpoint")
+			.setProperty(CoreOptions.ALIGNMENT, Alignment.RIGHT);
 						
 			// compute the layout
-			layout(root, configurator)
+			layout(root, configurator);
 		}
 	}
 	

@@ -26,6 +26,12 @@ public class ActorSModel implements TurnSModel {
 		List<SModelElement> children = new ArrayList<>();		
 		return children;
 	}
+
+	@Override
+	public List<SModelElement> generateChildrenForSGraph() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
