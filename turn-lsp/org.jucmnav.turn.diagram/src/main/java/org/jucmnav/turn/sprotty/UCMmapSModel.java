@@ -2,6 +2,8 @@ package org.jucmnav.turn.sprotty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.log4j.Logger;
 import org.jucmnav.turn.turn.ComponentRef;
 import org.jucmnav.turn.turn.Path;
@@ -42,7 +44,7 @@ public class UCMmapSModel implements TurnSModel {
 			ComponentRefSModel compRefSModel = new ComponentRefSModel(compRef);
 			children.add(compRefSModel.generate());
 		}
-		return children;
+		return children.stream().collect(Collectors.toMap(SModelElement::getId, s -> s, (s,v) -> s)).values().stream().collect(Collectors.toList());
 	}
 	
 	private LayoutOptions getRootLayoutOptions() {

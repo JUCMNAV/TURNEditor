@@ -19,7 +19,7 @@ export class StubNodeView implements IView {
         const BLedge = "z";
 
         const diamond =  initpos + " " + TLedge + " " + TRedge + " " + BRedge + " " + BLedge;
-        const vnode = <g class-sprotty-node={true} >
+        const vnode = <g class-ucm-node={true} >
             {context.renderChildren(node)}
             <path d={diamond} fill="none" stroke="white"/>
         </g>;

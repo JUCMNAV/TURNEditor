@@ -2,8 +2,8 @@ import { Disposable } from "@theia/languages/lib/browser";
 import { ThemeService, Theme } from "@theia/core/lib/browser/theming";
 import { injectable } from "inversify";
 
-const darkTheme = require('turn-sprotty/css/dark/dark.useable.css')
-const lightTheme = require('turn-sprotty/css/light/light.useable.css')
+const darkTheme = require('turn-sprotty/css/dark.useable.css');
+const lightTheme = require('turn-sprotty/css/light.useable.css');
 
 @injectable()
 export class ThemeManager implements Disposable {
@@ -11,9 +11,9 @@ export class ThemeManager implements Disposable {
     private disposable: Disposable;
 
     initialize() {
-        const themeService = ThemeService.get()
+        const themeService = ThemeService.get();
         if (themeService instanceof ThemeService) {
-            this.switchTheme(undefined, themeService.getCurrentTheme())
+            this.switchTheme(undefined, themeService.getCurrentTheme());
             this.disposable = themeService.onThemeChange(event => this.switchTheme(event.oldTheme, event.newTheme))
         }
     }
@@ -26,9 +26,9 @@ export class ThemeManager implements Disposable {
                 lightTheme.unuse()
         }
         if (newTheme.id === 'dark')
-            darkTheme.use()
+            darkTheme.use();
         else
-            lightTheme.use()
+            lightTheme.use();
     }
 
     dispose(): void {

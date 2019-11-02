@@ -5,4 +5,12 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
- @import "diagram.css";
+@import "dark/diagram.css";
+@import "ucm.css";
+
+:root {
+ --text-color: #ffffff;
+ --node-color: #ffffff;
+ --edge-color: #b5b5b5;
+ --inner-text-color: #000000;
+}
