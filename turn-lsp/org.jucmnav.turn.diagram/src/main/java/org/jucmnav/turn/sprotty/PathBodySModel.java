@@ -2,7 +2,6 @@ package org.jucmnav.turn.sprotty;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.jucmnav.turn.mapping.TurnSModelMapper;
 import org.jucmnav.turn.turn.EndpointWithConnect;
 import org.jucmnav.turn.turn.PathBody;
@@ -85,6 +84,7 @@ public class PathBodySModel implements TurnSModel {
 		return children;
 	}
 
+	//TODO: rename this method
 	private TurnSModel getURNSModel() {
 		
 		URNmodelElement endPathModelElement = null;
