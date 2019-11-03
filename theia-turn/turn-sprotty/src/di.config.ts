@@ -23,7 +23,7 @@ import {
     BeliefNodeView, TaskNodeView, IndicatorNodeView, HeaderCompartmentView,
     ModuleNodeView, SoftGoalTryNodeView, ContributeEdgeView,
     CorrelationEdgeView, DecompositionEdgeView, DependencyEdgeView,
-    StartPointNodeView, OrNodeView, AndNodeView, PathBoxView, ConnectionEdgeView
+    StartPointNodeView, OrNodeView, AndNodeView, PathBoxView, ConnectionEdgeView, EmptyNodeView
 } from "./views";
 
 import {MAPStartNode, TURNLabel, TURNNode} from "./models";
@@ -73,6 +73,7 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
     configureModelElement(context, OrNodeView.TYPE_JOIN, TURNNode, OrNodeView);
     configureModelElement(context, OrNodeView.TYPE_FORK, TURNNode, OrNodeView);
     configureModelElement(context, ConnectionEdgeView.TYPE, SEdge, ConnectionEdgeView);
+    configureModelElement(context, EmptyNodeView.TYPE, TURNNode, EmptyNodeView);
 });
 
 export default function createContainer(widgetId: string): Container {

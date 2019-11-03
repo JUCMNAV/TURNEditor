@@ -23,6 +23,12 @@ map PaperExample {
     start s2 -> X resp8 -> X resp4 -> or {
         [condition && !condition2] -> X resp5 -> end e.
         [condition && condition2] -> X resp6 -> ;
-        [else] -> X resp6 -> ;
+        [someCondition] -> X resp6 -> ;
     } -> end e5.
+}
+
+map StartPointTestOrFork {
+    start s -> or {
+        [condition] -> X resp123 -> ;
+    } -> end e.
 }

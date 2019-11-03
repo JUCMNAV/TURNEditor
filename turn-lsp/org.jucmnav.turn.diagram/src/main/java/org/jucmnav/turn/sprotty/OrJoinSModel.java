@@ -10,7 +10,7 @@ import io.typefox.sprotty.api.SModelElement;
 
 public class OrJoinSModel implements TurnSModel {
 
-	private static final String TYPE = "turnnode:orJoin";
+	public static final String TYPE = "turnnode:orJoin";
 	private OrJoin orJoin;
 	
 	public OrJoinSModel(OrJoin orJoin) {

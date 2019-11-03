@@ -10,7 +10,7 @@ import io.typefox.sprotty.api.SModelElement;
 
 public class AndJoinSModel implements TurnSModel {
 
-	private static final String TYPE = "turnnode:andJoin";
+	public static final String TYPE = "turnnode:andJoin";
 	private AndJoin andJoin;
 	
 	public AndJoinSModel(AndJoin andJoin) {

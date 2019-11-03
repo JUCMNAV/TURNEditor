@@ -8,6 +8,7 @@ import org.jucmnav.turn.turn.OrFork;
 import org.jucmnav.turn.turn.RegularOrFork;
 
 import io.typefox.sprotty.api.LayoutOptions;
+import io.typefox.sprotty.api.SEdge;
 import io.typefox.sprotty.api.SModelElement;
 
 public class OrForkSModel implements TurnSModel {
@@ -43,12 +44,53 @@ public class OrForkSModel implements TurnSModel {
 
 	@Override
 	public List<SModelElement> generateChildrenForSGraph() {
+		
 		List<SModelElement> graphChildren = new ArrayList<>();
 		for(RegularOrFork rof : orFork.getBody().getRegularBody()) {
 			PathBodySModel pathBodySModel = new PathBodySModel(orFork, rof.getPathBody());
 			graphChildren.addAll(pathBodySModel.generateChildrenForSGraph());
 		}
+		
+		if(orFork.getConnectingOrBody() != null) {
+			PathBodySModel pathBodySModel = new PathBodySModel(orFork.getConnectingOrBody(), orFork.getConnectingOrBody());
+			graphChildren.addAll(pathBodySModel.generateChildrenForSGraph());
+			graphChildren.addAll(createEdgeFromForkToJoin());
+		}
+		
 		return graphChildren;
 	}
+	
+	private List<SModelElement> createEdgeFromForkToJoin() {
+		
+		List<SModelElement> edgeElements = new ArrayList<>();
+		
+		String sourceId = Integer.toHexString(orFork.hashCode());
+		String targetId = String.format("join-%s", Integer.toHexString(orFork.getConnectingOrBody().hashCode()));
+		
+		TURNNode emptyNode = new TURNNode(n -> {
+			n.setType("turnnode:empty");
+			n.setId(String.format("empty-%s", sourceId));
+		});
+		
+		edgeElements.add(emptyNode);
+		
+		edgeElements.add(new SEdge(e -> {
+			e.setType("edge:connection");
+			e.setId(String.format("%s-to-%s", sourceId, emptyNode.getId()));
+			e.setSourceId(sourceId);
+			e.setTargetId(emptyNode.getId());
+		}));
+		
+		edgeElements.add(new SEdge(e -> {
+			e.setType("edge:connection");
+			e.setId(String.format("%s-to-%s", emptyNode.getId(), targetId));
+			e.setSourceId(emptyNode.getId());
+			e.setTargetId(targetId);
+		}));
+		
+		return edgeElements;
+		
+	}
+	
 
 }

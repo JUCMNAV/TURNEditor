@@ -5,14 +5,12 @@ import {IView, RenderingContext} from "sprotty/lib";
 import {TURNNode} from "../../models";
 import { VNode } from "snabbdom/vnode";
 
-export class OrNodeView implements IView {
+export class EmptyNodeView implements IView {
 
-    static readonly TYPE_JOIN = 'turnnode:orJoin';
-    static readonly TYPE_FORK = 'turnnode:orFork';
-
+    static readonly TYPE = 'turnnode:empty';
 
     render(node: TURNNode, context: RenderingContext): VNode {
-        return <g class-ucm-edge={true}>
+        return <g>
             // Intentionally made as an empty svg group
         </g>;
     }

@@ -3,10 +3,13 @@ package org.jucmnav.turn.sprotty;
 import java.util.ArrayList;
 import java.util.List;
 import org.jucmnav.turn.mapping.TurnSModelMapper;
+import org.jucmnav.turn.turn.AndFork;
 import org.jucmnav.turn.turn.EndpointWithConnect;
+import org.jucmnav.turn.turn.OrFork;
 import org.jucmnav.turn.turn.PathBody;
 import org.jucmnav.turn.turn.PathBodyNode;
 import org.jucmnav.turn.turn.PathBodyNodes;
+import org.jucmnav.turn.turn.Stub;
 import org.jucmnav.turn.turn.URNmodelElement;
 
 import io.typefox.sprotty.api.SEdge;
@@ -49,7 +52,7 @@ public class PathBodySModel implements TurnSModel {
 			pathChildren.add(turnSModel.generate());
 		}
 		
-		TurnSModel regularEndSModel = getURNSModel();
+		TurnSModel regularEndSModel = getEndURNSModel();
 		pathChildren.add(regularEndSModel.generate());
 		List<SModelElement> regularEndGraphChildren = regularEndSModel.generateChildrenForSGraph();
 		if(regularEndGraphChildren != null && !regularEndGraphChildren.isEmpty()) {
@@ -84,8 +87,7 @@ public class PathBodySModel implements TurnSModel {
 		return children;
 	}
 
-	//TODO: rename this method
-	private TurnSModel getURNSModel() {
+	private TurnSModel getEndURNSModel() {
 		
 		URNmodelElement endPathModelElement = null;
 		
@@ -100,6 +102,14 @@ public class PathBodySModel implements TurnSModel {
 			endPathModelElement = (URNmodelElement) pathBody.getReferencedEnd();
 		}else if(pathBody.getReferencedStub() != null) {
 			endPathModelElement = (URNmodelElement) pathBody.getReferencedStub();
+		}else {
+			if(startElement instanceof OrFork) {
+				endPathModelElement = ((OrFork) startElement).getConnectingOrBody();
+			}else if(startElement instanceof AndFork) {
+				endPathModelElement = ((AndFork) startElement).getConnectingAndBody();
+			}else if (startElement instanceof Stub) {
+				endPathModelElement = ((Stub) startElement).getConnectingStubBody();
+			}
 		}
 		
 		return TurnSModelMapper.mapURNmodelElementToSModel(endPathModelElement);
