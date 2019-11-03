@@ -17,6 +17,7 @@ import org.jucmnav.turn.turn.AndFork;
 import org.jucmnav.turn.turn.AndJoin;
 import org.jucmnav.turn.turn.OrFork;
 import org.jucmnav.turn.turn.OrJoin;
+import org.jucmnav.turn.turn.PathBody;
 import org.jucmnav.turn.turn.RespRef;
 import org.jucmnav.turn.turn.StartPoint;
 import org.jucmnav.turn.turn.Stub;
@@ -69,6 +70,8 @@ public class TurnSModelMapper {
 			turnSModel = new StartPointSModel((StartPoint) urnModelElement);
 		}else if(urnModelElement instanceof OrJoin){
 			turnSModel = new OrJoinSModel((OrJoin) urnModelElement);
+		}else if(urnModelElement instanceof PathBody){
+			turnSModel = new ConnectingBodySModel((PathBody) urnModelElement);
 		}else {
 			throw new IllegalArgumentException("No corresponding SModel for given URN element");
 		}

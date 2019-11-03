@@ -284,7 +284,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="failKind" eType="#//FailureKind"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="catches" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathBody">
+  <eClassifiers xsi:type="ecore:EClass" name="PathBody" eSuperTypes="#//URNmodelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pathEnd" eType="#//RegularEnd"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedEnd" eType="#//ReferencedEnd"/>

@@ -70,7 +70,8 @@ URNmodelElement:
 	Contribution | Decomposition | Dependency | StrategiesGroup | EvaluationStrategy |
 	LinearConversion | QualToQMappings | ContributionContextGroup | ContributionContext |
 	UCMmap | StartPoint | RespRef | WaitingPlace | FailurePoint | Stub | OrFork | OrJoin |
-	AndFork | AndJoin | Timer | ComponentRef | ScenarioGroup | ScenarioDef | Variable | EnumerationType
+	AndFork | AndJoin | Timer | ComponentRef | ScenarioGroup | ScenarioDef | Variable | 
+	EnumerationType | PathBody
 ;
 	
 ArtificialRule: (longName = STRING)?;
