@@ -39,4 +39,10 @@ public class ComponentRefSModel implements TurnSModel {
 		});
 	}
 
+	@Override
+	public List<SModelElement> generateChildrenForSGraph() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

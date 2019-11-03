@@ -11,9 +11,9 @@ export class StartPointNodeView implements IView {
 
     render(node: MAPStartNode, context: RenderingContext): VNode {
         const radius = node.getDimension() / 2;
-        const vnode = <g class-sprotty-node={true} >
+        const vnode = <g class-ucm-node={true} >
             {context.renderChildren(node)}
-            <circle cx={radius} cy={radius} r={radius} fill="white"/>
+            <circle cx={radius} cy={radius} r={radius} />
         </g>;
         return vnode;
     }

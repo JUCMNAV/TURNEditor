@@ -2,6 +2,8 @@ package org.jucmnav.turn.sprotty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.log4j.Logger;
 import org.jucmnav.turn.turn.ComponentRef;
 import org.jucmnav.turn.turn.Path;
@@ -35,14 +37,14 @@ public class UCMmapSModel implements TurnSModel {
 	public List<SModelElement> generateChildren() {		
 		List<SModelElement> children = new ArrayList<>();	
 		for(Path path : ucmMap.getPaths()) {
-			PathSModel pathSModel = new PathSModel(path);
-			children.addAll(pathSModel.generateChildren());
+			PathBodySModel pathBodySModel = new PathBodySModel(path.getStartPoint(), path.getPathBody());
+			children.addAll(pathBodySModel.generateChildrenForSGraph());
 		}
 		for(ComponentRef compRef : ucmMap.getComponents()) {
 			ComponentRefSModel compRefSModel = new ComponentRefSModel(compRef);
 			children.add(compRefSModel.generate());
 		}
-		return children;
+		return children.stream().collect(Collectors.toMap(SModelElement::getId, s -> s, (s,v) -> s)).values().stream().collect(Collectors.toList());
 	}
 	
 	private LayoutOptions getRootLayoutOptions() {
@@ -55,6 +57,12 @@ public class UCMmapSModel implements TurnSModel {
 			options.setPaddingTop(0.0);
 			options.setPaddingBottom(0.0);
 		});
+	}
+
+	@Override
+	public List<SModelElement> generateChildrenForSGraph() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

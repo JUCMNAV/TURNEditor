@@ -1,0 +1,20 @@
+.ucm-node {
+    color: var(--text-color);
+    fill: var(--node-color);
+}
+
+.ucm-edge {
+    fill: none;
+    stroke: var(--edge-color);
+    stroke-width: 5;
+}
+
+.resp-node {
+    stroke: var(--node-color);
+    stroke-width: 10;
+}
+
+.traversed-node {
+    --node-color: red;
+    --edge-color: red;
+}

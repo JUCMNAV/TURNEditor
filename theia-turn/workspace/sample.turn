@@ -1,0 +1,28 @@
+urnModel example
+
+map Default {
+    start s -> X resp -> X resp10 -> end e.
+}
+
+map Default2 {
+    start s1 -> X r1 -> or {
+        [c1] -> X r2 -> end e1.
+        [c2] -> end e2.
+        [c3] -> X r3 -> or {
+            [c4] -> X r4 -> end e3.
+            [c5] -> X r5 -> X r6 -> or {
+                [c6] -> end e4.
+                [c7] -> X r7 -> end e5.
+            }
+        }
+        [c8] -> X r8 -> X r9 -> end e6.
+    }
+}
+
+map PaperExample {
+    start s2 -> X resp8 -> X resp4 -> or {
+        [condition && !condition2] -> X resp5 -> end e.
+        [condition && condition2] -> X resp6 -> ;
+        [else] -> X resp6 -> ;
+    } -> end e5.
+}
