@@ -1,6 +1,10 @@
 package org.jucmnav.turn.sprotty;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import io.typefox.sprotty.api.SCompartment;
+import io.typefox.sprotty.api.SLabel;
 import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.RespRef;
 import io.typefox.sprotty.api.LayoutOptions;
@@ -27,8 +31,20 @@ public class RespRefSModel implements TurnSModel {
 
 	@Override
 	public List<SModelElement> generateChildren() {
-		//TODO: add label
-		return null;
+		List<SModelElement> compartments = new ArrayList<>();
+		List<SModelElement> labels = new ArrayList<>();
+		SLabel label = new SLabel();
+		label.setText(respRef.getName());
+		label.setId(Integer.toHexString(label.hashCode()));
+		label.setType("label:heading");
+		labels.add(label);
+		SCompartment compartment = new SCompartment();
+		compartment.setLayout("hbox");
+		compartment.setId(Integer.toHexString(compartment.hashCode()));
+		compartment.setType("comp:comp");
+		compartment.setChildren(labels);
+		compartments.add(compartment);
+		return compartments;
 	}
 	
 	private LayoutOptions getLayoutOptions() {
