@@ -24,7 +24,7 @@ map OrExplicit {
 
 map And {
     start s -> X r1 -> and {
-        * -> X r2 -> ;
+        * -> X r2 -> X r123 -> ;
         * -> X r3 -> ;
     } -> end e.
 }

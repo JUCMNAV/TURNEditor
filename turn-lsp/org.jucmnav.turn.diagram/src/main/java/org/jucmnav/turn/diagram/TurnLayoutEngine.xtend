@@ -23,9 +23,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.elk.core.options.Alignment
 import org.eclipse.elk.core.options.HierarchyHandling
 import org.eclipse.elk.alg.layered.options.GreedySwitchType
-import org.eclipse.elk.core.options.EdgeRouting
-import org.eclipse.elk.core.options.EdgeType
-
 
 class TurnLayoutEngine extends ElkLayoutEngine {
 	

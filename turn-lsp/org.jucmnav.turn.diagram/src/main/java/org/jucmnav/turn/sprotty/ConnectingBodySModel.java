@@ -1,10 +1,7 @@
-package org.jucmnav.turn.mapping;
+package org.jucmnav.turn.sprotty;
 
 import java.util.List;
 import org.jucmnav.turn.diagram.TURNNode;
-import org.jucmnav.turn.sprotty.AndJoinSModel;
-import org.jucmnav.turn.sprotty.OrJoinSModel;
-import org.jucmnav.turn.sprotty.TurnSModel;
 import org.jucmnav.turn.turn.AndFork;
 import org.jucmnav.turn.turn.OrFork;
 import org.jucmnav.turn.turn.PathBody;

@@ -2,12 +2,9 @@ package org.jucmnav.turn.sprotty;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.OrFork;
 import org.jucmnav.turn.turn.RegularOrFork;
-
-import io.typefox.sprotty.api.LayoutOptions;
 import io.typefox.sprotty.api.SEdge;
 import io.typefox.sprotty.api.SModelElement;
 
@@ -25,21 +22,12 @@ public class OrForkSModel implements TurnSModel {
 		return new TURNNode(fork -> {
 			fork.setType(TYPE);
 			fork.setId(Integer.toHexString(orFork.hashCode()));
-			fork.setLayoutOptions(getLayoutOptions());
-			fork.setChildren(generateChildren());
 		});
 	}
 
 	@Override
 	public List<SModelElement> generateChildren() {
-		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	private LayoutOptions getLayoutOptions() {
-		return new LayoutOptions(options ->{
-			//TODO: set layoutOptions
-		});
 	}
 
 	@Override
@@ -54,7 +42,10 @@ public class OrForkSModel implements TurnSModel {
 		if(orFork.getConnectingOrBody() != null) {
 			PathBodySModel pathBodySModel = new PathBodySModel(orFork.getConnectingOrBody(), orFork.getConnectingOrBody());
 			graphChildren.addAll(pathBodySModel.generateChildrenForSGraph());
-			graphChildren.addAll(createEdgeFromForkToJoin());
+			graphChildren.addAll(createEdgeFromForkToJoin());//TODO: analyze if needed when else body present on orFork element
+		}
+		if(orFork.getBody().getElseBody() != null) {
+			//TODO
 		}
 		
 		return graphChildren;
