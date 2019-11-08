@@ -5,6 +5,7 @@ import org.jucmnav.turn.diagram.TurnResourceHandler;
 import org.jucmnav.turn.sprotty.ActorSModel;
 import org.jucmnav.turn.sprotty.AndForkSModel;
 import org.jucmnav.turn.sprotty.AndJoinSModel;
+import org.jucmnav.turn.sprotty.ConnectingBodySModel;
 import org.jucmnav.turn.sprotty.OrForkSModel;
 import org.jucmnav.turn.sprotty.OrJoinSModel;
 import org.jucmnav.turn.sprotty.RespRefSModel;
