@@ -3,12 +3,10 @@ package org.jucmnav.turn.sprotty;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.typefox.sprotty.api.SCompartment;
-import io.typefox.sprotty.api.SLabel;
+import io.typefox.sprotty.api.*;
+import org.jucmnav.turn.diagram.TURNLabel;
 import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.RespRef;
-import io.typefox.sprotty.api.LayoutOptions;
-import io.typefox.sprotty.api.SModelElement;
 
 public class RespRefSModel implements TurnSModel {
 
@@ -31,20 +29,14 @@ public class RespRefSModel implements TurnSModel {
 
 	@Override
 	public List<SModelElement> generateChildren() {
-		List<SModelElement> compartments = new ArrayList<>();
 		List<SModelElement> labels = new ArrayList<>();
-		SLabel label = new SLabel();
-		label.setText(respRef.getName());
-		label.setId(Integer.toHexString(label.hashCode()));
-		label.setType("label:heading");
-		labels.add(label);
-		SCompartment compartment = new SCompartment();
-		compartment.setLayout("hbox");
-		compartment.setId(Integer.toHexString(compartment.hashCode()));
-		compartment.setType("comp:comp");
-		compartment.setChildren(labels);
-		compartments.add(compartment);
-		return compartments;
+        TURNLabel label = new TURNLabel();
+        label.setText(respRef.getName());
+        label.setId(respRef.getName());
+        label.setType("turnlabel:text");
+        label.setPosition(new Point(0d, 52d));
+        labels.add(label);
+		return labels;
 	}
 	
 	private LayoutOptions getLayoutOptions() {

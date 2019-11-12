@@ -19,11 +19,18 @@ map Default2 {
     }
 }
 
+map yo {
+    start s -> X r1 -> and {
+        * -> X r2 -> ;
+        * -> X r3 -> ;
+    } -> X r4 -> end e4.
+}
+
 map PaperExample {
     start s2 -> X resp8 -> X resp4 -> or {
         [condition && !condition2] -> X resp5 -> end e.
         [condition && condition2] -> X resp6 -> ;
-        [someCondition] -> X resp6 -> ;
+        [someCondition] -> X resp7 -> ;
     } -> end e5.
 }
 
