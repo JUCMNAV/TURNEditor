@@ -30,16 +30,20 @@ export class ConnectionEdgeView implements IView {
         } else if (segments.length > 2) {
             const p2 = segments[2];
             const p3 = segments[3];
-            const c1 = p1.x - p0.x;
-            const c2 = p3.x - p1.x;
+            const midLength = Math.abs(p1.y - p2.y);
+            const c = Math.min(midLength / 2.0, p1.x - p0.x, p3.x - p1.x);
             if (p3.y < p0.y) {
-                path += ` A ${c1} ${c1} 0 0 0 ${p1.x} ${p1.y - c1}`;
-                path += ` L ${p1.x} ${p2.y + c2}`;
-                path += ` A ${c2} ${c2} 0 0 1 ${p3.x} ${p3.y}`;
+                path += ` L ${p1.x - c} ${p1.y}`;
+                path += ` A ${c} ${c} 0 0 0 ${p1.x} ${p1.y - c}`;
+                path += ` L ${p2.x} ${p2.y + c}`;
+                path += ` A ${c} ${c} 0 0 1 ${p2.x + c} ${p2.y}`;
+                path += ` L ${p3.x} ${p3.y}`;
             } else {
-                path += ` A ${c1} ${c1} 0 0 1 ${p1.x} ${p1.y + c1}`;
-                path += ` L ${p1.x} ${p2.y - c2}`;
-                path += ` A ${c2} ${c2} 0 0 0 ${p3.x} ${p3.y}`;
+                path += ` L ${p1.x - c} ${p1.y}`;
+                path += ` A ${c} ${c} 0 0 1 ${p1.x} ${p1.y + c}`;
+                path += ` L ${p2.x} ${p2.y - c}`;
+                path += ` A ${c} ${c} 0 0 0 ${p2.x + c} ${p2.y}`;
+                path += ` L ${p3.x} ${p3.y}`;
             }
         }
 

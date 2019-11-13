@@ -6,8 +6,6 @@ import java.util.List;
 import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.AndFork;
 import org.jucmnav.turn.turn.PathBody;
-
-import io.typefox.sprotty.api.LayoutOptions;
 import io.typefox.sprotty.api.SModelElement;
 
 public class AndForkSModel implements TurnSModel {
@@ -23,29 +21,29 @@ public class AndForkSModel implements TurnSModel {
 		return new TURNNode(fork ->{
 			fork.setType(TYPE);
 			fork.setId(Integer.toHexString(andFork.hashCode()));
-			fork.setLayoutOptions(getLayoutOptions());
 			fork.setChildren(generateChildren());
 		});
 	}
 
 	@Override
 	public List<SModelElement> generateChildren() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	private LayoutOptions getLayoutOptions() {
-		return new LayoutOptions(options ->{
-			//TODO: set layoutOptions
-		});
-	}
 	@Override
 	public List<SModelElement> generateChildrenForSGraph() {
 		List<SModelElement> graphChildren = new ArrayList<>();
+		
 		for(PathBody pb : andFork.getPathbody() ) {
 			PathBodySModel pathBodySModel = new PathBodySModel(andFork, pb);
 			graphChildren.addAll(pathBodySModel.generateChildrenForSGraph());
 		}
+		
+		if(andFork.getConnectingAndBody() != null) {
+			PathBodySModel pathBodySModel = new PathBodySModel(andFork.getConnectingAndBody(), andFork.getConnectingAndBody());
+			graphChildren.addAll(pathBodySModel.generateChildrenForSGraph());
+		}
+		
 		return graphChildren;
 	}
 

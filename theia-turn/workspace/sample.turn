@@ -29,8 +29,14 @@ map yo {
 map PaperExample {
     start s2 -> X resp8 -> X resp4 -> or {
         [condition && !condition2] -> X resp5 -> end e.
-        [condition && condition2] -> X resp6 -> ;
-        [someCondition] -> X resp7 -> ;
+        [condition && condition2] -> X resp6 -> and {
+            * -> end e321.
+            * -> X ef -> X we -> ;
+            * -> end as.
+            * -> X f -> end ge.
+            * -> X d -> ;
+        } -> X op -> end e2323.
+        [someCondition] -> X resp6 -> ;
     } -> end e5.
 }
 
