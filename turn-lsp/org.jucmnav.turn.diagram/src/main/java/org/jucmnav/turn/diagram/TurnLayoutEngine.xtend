@@ -16,6 +16,7 @@ import org.apache.log4j.Logger
 import org.eclipse.elk.alg.layered.options.LayeredOptions
 import org.eclipse.elk.core.math.ElkPadding
 import org.eclipse.elk.core.options.CoreOptions
+import org.eclipse.elk.core.options.NodeLabelPlacement
 import org.eclipse.elk.core.options.Direction
 import org.eclipse.elk.graph.ElkNode
 import org.eclipse.emf.common.util.URI
@@ -55,13 +56,21 @@ class TurnLayoutEngine extends ElkLayoutEngine {
 			.setProperty(CoreOptions.PROGRESS_BAR, true)
 			.setProperty(CoreOptions.ZOOM_TO_FIT, true)
 			.setProperty(CoreOptions.EDGE_THICKNESS, 4.0)
+			.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
+			.setProperty(LayeredOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
 			.setProperty(CoreOptions.HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
 			.setProperty(LayeredOptions.CROSSING_MINIMIZATION_GREEDY_SWITCH_TYPE, GreedySwitchType.TWO_SIDED);
-			
+
 			// TUCM start point configuration
 			configurator.configureByType('turnnode:startpoint')
+			.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
+			.setProperty(LayeredOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
 			.setProperty(CoreOptions.ALIGNMENT, Alignment.LEFT);
-			
+
+			//configurator.configureByType('label:text')
+			//.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
+			//.setProperty(LayeredOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
+
 			configurator.configureByType("turnnode:endpoint")
 			.setProperty(CoreOptions.ALIGNMENT, Alignment.RIGHT);
 						
