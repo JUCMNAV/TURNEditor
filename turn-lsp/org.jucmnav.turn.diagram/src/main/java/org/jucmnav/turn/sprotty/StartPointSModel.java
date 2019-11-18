@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.typefox.sprotty.api.Point;
+import io.typefox.sprotty.api.SLabel;
 import org.jucmnav.turn.diagram.TURNLabel;
 import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.StartPoint;
@@ -25,7 +26,8 @@ public class StartPointSModel implements TurnSModel {
 		return new TURNNode(s -> {
 			s.setType(TYPE);
 			s.setId(Integer.toHexString(startPoint.hashCode()));
-			s.setLayoutOptions(getLayoutOptions());
+			//s.setLayout("vbox");
+			//s.setLayoutOptions(getLayoutOptions());
 			s.setChildren(generateChildren());
 		});
 	}
@@ -33,11 +35,11 @@ public class StartPointSModel implements TurnSModel {
 	@Override
 	public List<SModelElement> generateChildren() {
 		List<SModelElement> labels = new ArrayList<>();
-		TURNLabel label = new TURNLabel();
-		label.setText(startPoint.getName());
-		label.setId(startPoint.getName());
-		label.setType("turnlabel:text");
-		label.setPosition(new Point(0d, 52d));
+		String name = startPoint.getName();
+		SLabel label = new SLabel();
+		label.setText(name);
+		label.setId(Integer.toHexString(label.hashCode()));
+		label.setType("label:text");
 		labels.add(label);
 		return labels;
 	}
