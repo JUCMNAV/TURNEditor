@@ -64,14 +64,13 @@ class TurnLayoutEngine extends ElkLayoutEngine {
 			// TUCM start point configuration
 			configurator.configureByType('turnnode:startpoint')
 			.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
-			.setProperty(LayeredOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
 			.setProperty(CoreOptions.ALIGNMENT, Alignment.LEFT);
 
-			//configurator.configureByType('label:text')
-			//.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
-			//.setProperty(LayeredOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
+			configurator.configureByType('turnnode:responsibility')
+			.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
 
 			configurator.configureByType("turnnode:endpoint")
+			.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
 			.setProperty(CoreOptions.ALIGNMENT, Alignment.RIGHT);
 						
 			// compute the layout

@@ -3,9 +3,7 @@ package org.jucmnav.turn.sprotty;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.typefox.sprotty.api.Point;
 import io.typefox.sprotty.api.SLabel;
-import org.jucmnav.turn.diagram.TURNLabel;
 import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.StartPoint;
 
@@ -26,8 +24,7 @@ public class StartPointSModel implements TurnSModel {
 		return new TURNNode(s -> {
 			s.setType(TYPE);
 			s.setId(Integer.toHexString(startPoint.hashCode()));
-			//s.setLayout("vbox");
-			//s.setLayoutOptions(getLayoutOptions());
+			s.setLayoutOptions(getLayoutOptions());
 			s.setChildren(generateChildren());
 		});
 	}

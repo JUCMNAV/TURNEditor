@@ -30,11 +30,10 @@ public class RespRefSModel implements TurnSModel {
 	@Override
 	public List<SModelElement> generateChildren() {
 		List<SModelElement> labels = new ArrayList<>();
-        TURNLabel label = new TURNLabel();
+        SLabel label = new SLabel();
         label.setText(respRef.getName());
-        label.setId(respRef.getName());
-        label.setType("turnlabel:text");
-        label.setPosition(new Point(0d, 52d));
+        label.setId(Integer.toHexString(label.hashCode()));
+        label.setType("label:text");
         labels.add(label);
 		return labels;
 	}

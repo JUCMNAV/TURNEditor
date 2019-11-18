@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.typefox.sprotty.api.Point;
+import io.typefox.sprotty.api.SLabel;
 import org.jucmnav.turn.diagram.TURNLabel;
 import org.jucmnav.turn.diagram.TURNNode;
 import org.jucmnav.turn.turn.EndPoint;
@@ -31,11 +32,10 @@ public class EndPointSModel implements TurnSModel {
 	@Override
 	public List<SModelElement> generateChildren() {
 		List<SModelElement> labels = new ArrayList<>();
-		TURNLabel label = new TURNLabel();
+		SLabel label = new SLabel();
 		label.setText(endPoint.getName());
-		label.setId(endPoint.getName());
-		label.setType("turnlabel:text");
-		label.setPosition(new Point(0d, 52d));
+		label.setId(Integer.toHexString(label.hashCode()));
+		label.setType("label:text");
 		labels.add(label);
 		return labels;
 	}
