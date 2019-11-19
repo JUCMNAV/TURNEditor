@@ -2,6 +2,7 @@ urnModel example
 
 map Default {
     start s -> X resp -> X resp10 -> end e.
+    start s1 -> resp10;
 }
 
 map Default2 {
@@ -11,17 +12,17 @@ map Default2 {
         [c3] -> X r3 -> or {
             [c4] -> X r4 -> end e3.
             [c5] -> X r5 -> X r6 -> or {
-                [c6] -> end e4.
+                [c6] -> X r9 -> r1;
                 [c7] -> X r7 -> end e5.
             }
         }
-        [c8] -> X r8 -> X r9 -> end e6.
+        [c8] -> X r8 -> end e6.
     }
 }
 
-map PaperExample {
-    start s2 -> X resp8 -> X resp4 -> or {
-        [condition && !condition2] -> X resp5 -> end e.
+map Paper {
+    start s2 -> join j -> X resp4 -> or {
+        [condition && !condition2] -> X resp5 -> end tee.
         [condition && condition2] -> X resp6 -> and {
             * -> end e321.
             * -> X ef -> X we -> ;
@@ -29,12 +30,15 @@ map PaperExample {
             * -> X f -> end ge.
             * -> X d -> ;
         } -> X op -> end e2323.
-        [someCondition] -> X resp6 -> ;
-    } -> end e5.
+        [someCondition] -> X resp2 -> j;
+    }
 }
 
 map StartPointTestOrFork {
-    start s -> or {
-        [condition] -> X resp123 -> ;
-    } -> end e.
+    start s1 -> X r1 -> sync j -> end e1.
+    start s1 -> X r2 -> j;
+}
+
+map PaperTest {
+    
 }

@@ -32,6 +32,7 @@ map And {
 map AndOr {
 
 }
+
 map PaperExample {
     start s -> X r1 -> X r2 -> or {
         [condition && !condition2] -> X r3 -> end e.
