@@ -68,6 +68,9 @@ public class MapNavigator implements Iterator<PathPair> {
 			for(RegularOrFork rof : ((OrFork) nextElement).getBody().getRegularBody()) {
 				navigatePath(nextElement, rof.getPathBody());
 			}
+			if(((OrFork) nextElement).getBody().getElseBody() != null) {
+				navigatePath(nextElement, ((OrFork) nextElement).getBody().getElseBody());
+			}
 			
 		}else if(nextElement instanceof AndFork) {
 			for(PathBody pb : ((AndFork) nextElement).getPathbody() ) {

@@ -29,7 +29,24 @@ map And {
 }
 
 map AndOr {
+    start s -> X r1 -> and {
+        * -> X r2 -> or {
+            [condition] -> end e.
+            [condition2] -> X r1 -> ;
+            [else] -> ;
+        } -> end e1.
+        * -> X r4 -> X r5 -> ;
+        * -> X r3 -> ;
+    } -> end e2.
+}
 
+map Loop {
+    start s -> X r1 -> join j -> X r5 -> or {
+        [condition1] -> X r2 -> end e.
+        [condition2] -> X r3 -> j;
+        [condition3] -> X r4 -> ;
+        [condition4] -> ;
+    } -> end e2.
 }
 
 map PaperExample {
