@@ -21,7 +21,7 @@ map Default2 {
 }
 
 map Paper {
-    start s2 -> join j -> X resp4 -> or {
+    start s2 -> X resp4 -> or {
         [condition && !condition2] -> X resp5 -> end tee.
         [condition && condition2] -> X resp6 -> and {
             * -> end e321.
@@ -30,7 +30,7 @@ map Paper {
             * -> X f -> end ge.
             * -> X d -> ;
         } -> X op -> end e2323.
-        [someCondition] -> X resp2 -> j;
+        [someCondition] -> X resp2 -> resp4;
     }
 }
 
