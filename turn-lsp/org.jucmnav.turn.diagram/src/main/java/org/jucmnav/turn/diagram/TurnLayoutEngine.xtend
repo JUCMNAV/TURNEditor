@@ -16,6 +16,7 @@ import org.apache.log4j.Logger
 import org.eclipse.elk.alg.layered.options.LayeredOptions
 import org.eclipse.elk.core.math.ElkPadding
 import org.eclipse.elk.core.options.CoreOptions
+import org.eclipse.elk.core.options.NodeLabelPlacement
 import org.eclipse.elk.core.options.Direction
 import org.eclipse.elk.graph.ElkNode
 import org.eclipse.emf.common.util.URI
@@ -23,6 +24,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.elk.core.options.Alignment
 import org.eclipse.elk.core.options.HierarchyHandling
 import org.eclipse.elk.alg.layered.options.GreedySwitchType
+import org.eclipse.elk.core.options.PortAlignment
+import org.eclipse.elk.alg.layered.options.LayerConstraint
 
 class TurnLayoutEngine extends ElkLayoutEngine {
 	
@@ -44,6 +47,10 @@ class TurnLayoutEngine extends ElkLayoutEngine {
 
 			// ----------- UCM configuration -----------
 			configurator.configureByType('ucm')
+			.setProperty(CoreOptions.ALGORITHM, "ELK Layered")
+			.setProperty(CoreOptions.INSIDE_SELF_LOOPS_ACTIVATE, true)
+			.setProperty(CoreOptions.INSIDE_SELF_LOOPS_YO, true)
+			.setProperty(LayeredOptions.FEEDBACK_EDGES, true)
 			.setProperty(CoreOptions.ALIGNMENT, Alignment.CENTER)
 			.setProperty(CoreOptions.DIRECTION, Direction.RIGHT)
 			.setProperty(CoreOptions.SPACING_NODE_NODE, 100.0)
@@ -52,18 +59,27 @@ class TurnLayoutEngine extends ElkLayoutEngine {
 			.setProperty(LayeredOptions.SPACING_EDGE_NODE_BETWEEN_LAYERS, 30.0)
 			.setProperty(LayeredOptions.SPACING_NODE_NODE_BETWEEN_LAYERS, 100.0)
 			.setProperty(CoreOptions.PADDING, new ElkPadding(120.0))
-			.setProperty(CoreOptions.PROGRESS_BAR, true)
-			.setProperty(CoreOptions.ZOOM_TO_FIT, true)
-			.setProperty(CoreOptions.EDGE_THICKNESS, 4.0)
+			.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
+			.setProperty(LayeredOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
 			.setProperty(CoreOptions.HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
 			.setProperty(LayeredOptions.CROSSING_MINIMIZATION_GREEDY_SWITCH_TYPE, GreedySwitchType.TWO_SIDED);
-			
+
 			// TUCM start point configuration
 			configurator.configureByType('turnnode:startpoint')
-			.setProperty(CoreOptions.ALIGNMENT, Alignment.LEFT);
+			.setProperty(CoreOptions.ALIGNMENT, Alignment.LEFT)
+			.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
+			.setProperty(LayeredOptions.LAYERING_LAYER_CONSTRAINT, LayerConstraint.FIRST)
+			.setProperty(CoreOptions.PORT_ALIGNMENT_EAST, PortAlignment.CENTER);
+			
+			configurator.configureByType('turnnode:responsibility')
+			.setProperty(CoreOptions.ALIGNMENT, Alignment.CENTER)
+			.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
+			.setProperty(CoreOptions.PORT_ALIGNMENT_DEFAULT, PortAlignment.CENTER);
 			
 			configurator.configureByType("turnnode:endpoint")
-			.setProperty(CoreOptions.ALIGNMENT, Alignment.RIGHT);
+			.setProperty(CoreOptions.ALIGNMENT, Alignment.RIGHT)
+			.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.outsideTopCenter())
+			.setProperty(CoreOptions.PORT_ALIGNMENT_WEST, PortAlignment.CENTER);
 						
 			// compute the layout
 			layout(root, configurator);

@@ -5,13 +5,12 @@ map Default {
 }
 
 map Responsibility {
-    start s -> X resp1 -> X resp2 -> end e.
+    start s#"Startpoint With a Very Long Name" -> X resp1#"Responsibility" -> X resp2 -> end e#"The Endpoint Name That Never Ends And Never Ends".
 }
 
 map OrImplicit {
     start s -> or {
         [condition] -> X r -> ;
-        [!condition] -> ;
     } -> end e.
 }
 
@@ -30,8 +29,26 @@ map And {
 }
 
 map AndOr {
-
+    start s -> X r1 -> and {
+        * -> X r2 -> or {
+            [condition] -> end e.
+            [condition2] -> X r1 -> ;
+            [else] -> ;
+        } -> end e1.
+        * -> X r4 -> X r5 -> ;
+        * -> X r3 -> ;
+    } -> end e2.
 }
+
+map Loop {
+    start s#"Startpoint" -> X r1 -> join j -> X r5 -> or {
+        [condition1] -> X r2 -> end e.
+        [condition2] -> X r3 -> j;
+        [condition3] -> X r4#"Responsibility" -> ;
+        [condition4] -> ;
+    } -> end e2.
+}
+
 map PaperExample {
     start s -> X r1 -> X r2 -> or {
         [condition && !condition2] -> X r3 -> end e.

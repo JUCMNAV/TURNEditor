@@ -33,7 +33,7 @@ import org.jucmnav.turn.turn.IntentionalElement
 import org.jucmnav.turn.turn.UCMmap
 import org.jucmnav.turn.turn.Path
 
-class TurnDiagramGenerator implements IDiagramGenerator {
+class TGRLDiagramGenerator implements IDiagramGenerator {
 	
 	static val CONTRIBUTE_EDGE_TYPE = 'contribute';
 	static val CORRELATION_EDGE_TYPE = 'correlated';

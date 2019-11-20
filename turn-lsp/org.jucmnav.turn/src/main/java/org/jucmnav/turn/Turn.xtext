@@ -71,7 +71,7 @@ URNmodelElement:
 	LinearConversion | QualToQMappings | ContributionContextGroup | ContributionContext |
 	UCMmap | StartPoint | RespRef | WaitingPlace | FailurePoint | Stub | OrFork | OrJoin |
 	AndFork | AndJoin | Timer | ComponentRef | ScenarioGroup | ScenarioDef | Variable | 
-	EnumerationType | PathBody
+	EnumerationType | PathBody | EndPoint
 ;
 	
 ArtificialRule: (longName = STRING)?;

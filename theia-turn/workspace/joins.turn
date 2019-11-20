@@ -1,0 +1,8 @@
+urnModel test_joins
+
+map example {
+    start s1 -> join j -> X r1 -> or {
+        [asd] -> X r3 -> j;
+        [asdas] -> X rewerwe -> join j -> end e.
+    }
+}

@@ -10,10 +10,9 @@ import io.typefox.sprotty.api.IDiagramState;
 import io.typefox.sprotty.api.SModelRoot;
 import io.typefox.sprotty.server.xtext.IDiagramGenerator;
 
-//TODO: change class name once tested
-public class TurnDiagramOtherGenerator implements IDiagramGenerator {
+public class TurnDiagramGenerator implements IDiagramGenerator {
 	
-	private static Logger LOGGER = Logger.getLogger(TurnDiagramOtherGenerator.class);
+	private static Logger LOGGER = Logger.getLogger(TurnDiagramGenerator.class);
 
 	@Override
 	public SModelRoot generate(Resource resource, IDiagramState state, CancelIndicator cancelIndicator) {		

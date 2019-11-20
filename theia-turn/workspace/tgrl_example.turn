@@ -24,8 +24,6 @@ actor abc#"Parent"{
     goal Respect#"Respect"{}
 }
 
-
-
 strategy abc#"ABC"{
     A.Motivation exceeding evaluation satisfied
 
