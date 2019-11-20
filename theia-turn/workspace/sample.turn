@@ -1,12 +1,8 @@
 urnModel example
 
 map Default {
-<<<<<<< HEAD
     start s -> X resp -> X resp10 -> end e.
     start s1 -> resp10;
-=======
-    start a23 -> X resp -> X k123hhhhhhhh -> end e.
->>>>>>> feature/label
 }
 
 map Default2 {
@@ -24,22 +20,9 @@ map Default2 {
     }
 }
 
-<<<<<<< HEAD
 map Paper {
     start s2 -> X resp4 -> or {
         [condition && !condition2] -> X resp5 -> end tee.
-=======
-map yo {
-    start s -> X r1 -> and {
-        * -> X r2 -> ;
-        * -> X r3 -> ;
-    } -> X r4 -> end e4.
-}
-
-map PaperExample {
-    start s2 -> X resp8 -> X resp4 -> or {
-        [condition && !condition2] -> X resp5 -> end e.
->>>>>>> feature/label
         [condition && condition2] -> X resp6 -> and {
             * -> end e321.
             * -> X ef -> X we -> ;

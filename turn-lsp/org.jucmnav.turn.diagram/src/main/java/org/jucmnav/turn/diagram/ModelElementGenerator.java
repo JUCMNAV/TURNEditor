@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.jucmnav.turn.turn.AndFork;
 import org.jucmnav.turn.turn.AndJoin;
 import org.jucmnav.turn.turn.EndPoint;
+import org.jucmnav.turn.turn.LongName;
 import org.jucmnav.turn.turn.OrFork;
 import org.jucmnav.turn.turn.OrJoin;
 import org.jucmnav.turn.turn.PathBody;
@@ -29,7 +30,7 @@ public class ModelElementGenerator {
 	private static final String ANDJOIN_TYPE = "turnnode:andJoin";
 	private static final String ORJOIN_TYPE = "turnnode:orJoin";
 	private static final String STUB_TYPE = "turnnode:stub";
-	private static final String LABEL_TYPE = "label:text";
+	private static final String LABEL_TYPE = "label:node";
 	private static final String UNKNOWN_TYPE = "unknown";
 	
 	public static SModelElement createTurnNode(URNmodelElement urnElement) {
@@ -65,8 +66,13 @@ public class ModelElementGenerator {
 	
 	private static String getElementLabelFromURNElement(URNmodelElement urnElement) {
 		EStructuralFeature nameFeature = urnElement.eClass().getEStructuralFeature("name");
-		String elementName = Objects.toString(urnElement.eGet(nameFeature), "");
-		return elementName;
+		EStructuralFeature longNameFeature = urnElement.eClass().getEStructuralFeature("longName");
+		LongName longName = ((LongName) urnElement.eGet(longNameFeature));
+		String label = Objects.toString(urnElement.eGet(nameFeature), "");
+		if(longName != null) {
+			label = Objects.toString(longName.getLongname(), Objects.toString(urnElement.eGet(nameFeature), ""));
+		}
+		return label;
 	}
 	
 	private static String getModelElementTypeFromURNElement(URNmodelElement urnElement) {		

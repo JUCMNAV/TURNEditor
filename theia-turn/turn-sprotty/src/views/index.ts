@@ -21,4 +21,4 @@ export * from './ucm/connection.edge';
 export * from './ucm/or.node';
 export * from './ucm/and.node';
 export * from './ucm/pathbox';
-export * from './ucm/empty.node';
+export * from './ucm/label.node';

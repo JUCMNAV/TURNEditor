@@ -27,7 +27,7 @@ export class ConnectionEdgeView implements IView {
         let path = `M ${p0.x} ${p0.y}`;
         if (segments.length <= 2) {
             path += ` L ${p1.x} ${p1.y}`;
-        } else if (segments.length > 2 && segments.length <= 4) {
+        } else if (segments.length === 4) {
             const p2 = segments[2];
             const p3 = segments[3];
             const midLength = Math.abs(p1.y - p2.y);
@@ -55,7 +55,7 @@ export class ConnectionEdgeView implements IView {
                 // TODO
             }
             path += this.getLinePath(p3.x, p3.y);
-        } else if (segments.length > 4 && segments.length <= 6) {
+        } else if (segments.length === 6) {
             const p2 = segments[2];
             const p3 = segments[3];
             const p4 = segments[4];
@@ -158,6 +158,10 @@ export class ConnectionEdgeView implements IView {
                 // TODO
             }
             path += this.getLinePath(p5.x, p5.y);
+        } else {
+            for (let p = 1; p < segments.length; p++) {
+                path += ` L ${segments[p].x} ${segments[p].y}`;
+            }
         }
 
         return <path d={path}/>;

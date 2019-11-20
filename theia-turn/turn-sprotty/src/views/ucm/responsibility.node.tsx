@@ -26,12 +26,12 @@ export class ResponsibilityNodeView implements IView {
         const p4 = "M " + Cx + " " + Cy + " l 25 25";
 
 
-        return <g class-resp-node="{true}">
+        return <g class-resp-node={true}>
+            <line class-ucm-edge={true} x1={-2} x2={Math.max(node.bounds.width + 2, 0)} y1={Cy} y2={Cy} />
             <path d={p1}/>
             <path d={p2}/>
             <path d={p3}/>
             <path d={p4}/>
-            <line x1={0} x2={Math.max(node.bounds.width, 0)} y1={Cy} y2={Cy} />
             {context.renderChildren(node)}
         </g>;
     }
