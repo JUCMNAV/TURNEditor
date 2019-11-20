@@ -155,7 +155,6 @@ export class ConnectionEdgeView implements IView {
                 }
             } else { // LEFT
                 path += ` L ${p1.x + c} ${p1.y}`;
-                // TODO
             }
             path += this.getLinePath(p5.x, p5.y);
         } else {

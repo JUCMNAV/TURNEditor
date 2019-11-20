@@ -10,14 +10,6 @@ export class ResponsibilityNodeView implements IView {
     static readonly TYPE = 'turnnode:responsibility';
 
     render(node: TURNNode, context: RenderingContext): VNode {
-        /*const TLx = 0;
-        const TLy = 0;
-        const BLx = 0;
-        const BLy = node.getDimension();
-        const TRx = node.getDimension();
-        const TRy = 0;
-        const BRx = node.getDimension();
-        const BRy = node.getDimension();*/
         const Cx = node.getDimension() / 2;
         const Cy = Math.max(node.bounds.height / 2, 0);
         const p1 = "M " + Cx + " " + Cy + " l -25 -25";

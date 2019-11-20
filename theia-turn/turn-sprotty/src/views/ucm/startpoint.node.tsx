@@ -10,7 +10,6 @@ export class StartPointNodeView implements IView {
     static readonly TYPE = 'turnnode:startpoint';
 
     render(node: TURNNode, context: RenderingContext): VNode {
-        // const xOffset = Math.max(node.bounds.width, 0);
         const yOffset = Math.max(node.bounds.height / 2, 0);
         const vnode = <g class-ucm-node={true} >
             {context.renderChildren(node)}
