@@ -1,5 +1,6 @@
-package mcgill.xtext.turn.diagram;
+package org.xtext.project.turn.tcolab.diagram;
 
+import java.util.*;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -14,20 +15,25 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.xtext.example.mydsl.tURN.Actor;
-import org.xtext.example.mydsl.tURN.Contribution;
-import org.xtext.example.mydsl.tURN.Decomposition;
-import org.xtext.example.mydsl.tURN.DecompositionType;
-import org.xtext.example.mydsl.tURN.Dependency;
-import org.xtext.example.mydsl.tURN.ElementLink;
-import org.xtext.example.mydsl.tURN.Evaluation;
-import org.xtext.example.mydsl.tURN.EvaluationStrategy;
-import org.xtext.example.mydsl.tURN.IntentionalElement;
-import org.xtext.example.mydsl.tURN.IntentionalElementType;
-import org.xtext.example.mydsl.tURN.LongName;
-import org.xtext.example.mydsl.tURN.TURNFactory;
-import org.xtext.example.mydsl.tURN.URNspec;
-import org.xtext.example.mydsl.tURN.impl.TURNFactoryImpl;
+import java.util.Map.Entry;
+import org.xtext.project.turn.turn.Actor;
+import org.xtext.project.turn.turn.Contribution;
+import org.xtext.project.turn.turn.Decomposition;
+import org.xtext.project.turn.turn.DecompositionType;
+import org.xtext.project.turn.turn.Dependency;
+import org.xtext.project.turn.turn.ElementLink;
+import org.xtext.project.turn.turn.IntentionalElement;
+import org.xtext.project.turn.turn.IntentionalElementType;
+import org.xtext.project.turn.turn.Evaluation;
+import org.xtext.project.turn.turn.EvaluationStrategy;
+import org.xtext.project.turn.turn.URNspec;
+import org.xtext.project.turn.turn.LongName;
+import org.xtext.project.turn.turn.TURNFactory;
+import org.xtext.project.turn.turn.impl.TURNFactoryImpl;
+import org.xtext.project.turn.turn.EvaluationStrategy;
+import org.xtext.project.turn.turn.ImportanceType;
+import java.util.Arrays;
+import java.util.List;
 
 public class TURNEvaluationManagerTest {
 

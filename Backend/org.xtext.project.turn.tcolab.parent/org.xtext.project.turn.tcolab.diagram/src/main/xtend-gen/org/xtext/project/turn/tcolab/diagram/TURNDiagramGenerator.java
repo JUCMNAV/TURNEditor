@@ -1,10 +1,10 @@
 /**
  * Copyright (C) 2017 TypeFox and others.
- * 
- * 
- * 
+ *
+ *
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * 
+ *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 package org.xtext.project.turn.tcolab.diagram;
@@ -48,16 +48,18 @@ import org.xtext.project.turn.turn.Dependency;
 import org.xtext.project.turn.turn.ElementLink;
 import org.xtext.project.turn.turn.ImportanceType;
 import org.xtext.project.turn.turn.IntentionalElement;
+import org.xtext.project.turn.turn.URNspec;
+import org.xtext.project.turn.turn.EvaluationStrategy;
 
 @SuppressWarnings("all")
 public class TURNDiagramGenerator implements IDiagramGenerator {
-  private final static String CONTRIBUTE_EDGE_TYPE = "contribute";
+  private static final String CONTRIBUTE_EDGE_TYPE = "contribute";
   
-  private final static String CORRELATION_EDGE_TYPE = "correlated";
+  private static final String CORRELATION_EDGE_TYPE = "correlated";
   
-  private final static String DECOMPOSITION_EDGE_TYPE = "decomposition";
+  private static final String DECOMPOSITION_EDGE_TYPE = "decomposition";
   
-  private final static String DEPENDENCY_EDGE_TYPE = "dependency";
+  private static final String DEPENDENCY_EDGE_TYPE = "dependency";
   
   private Map<Actor, SModelElement> actorIndex = new HashMap<Actor, SModelElement>();
   
@@ -65,40 +67,89 @@ public class TURNDiagramGenerator implements IDiagramGenerator {
   
   private XtextResource xtresource;
   
-  private ICompositeNode rootNode;
-  
   private IParseResult parseResult;
+  
+  private TURNEvaluationManager evalManager;
   
   @Override
   public SModelRoot generate(final Resource resource, final IDiagramState state, final CancelIndicator cancelIndicator) {
-    final Map<String, String> stateInfo = state.getOptions();
-    final String stateURI = stateInfo.get("sourceUri");
-    int _lastIndexOf = stateURI.lastIndexOf("#");
-    int _plus = (_lastIndexOf + 1);
-    final String modelElementPath = stateURI.substring(_plus);
-    int _lastIndexOf_1 = modelElementPath.lastIndexOf(".");
-    int _plus_1 = (_lastIndexOf_1 + 1);
-    final String sections = modelElementPath.substring(_plus_1);
     this.xtresource = ((XtextResource) resource);
     if ((this.xtresource != null)) {
       this.parseResult = this.xtresource.getParseResult();
       if ((this.parseResult != null)) {
-        this.rootNode = this.parseResult.getRootNode();
-        BidiIterable<INode> _children = this.rootNode.getChildren();
-        for (final INode abstractNode : _children) {
+        EObject _semanticElement = this.parseResult.getRootNode().getSemanticElement();
+        URNspec urnSpec = ((URNspec) _semanticElement);
+        final Map<String, String> stateInfo = state.getOptions();
+        final String stateURI = stateInfo.get("sourceUri");
+        int _lastIndexOf = stateURI.lastIndexOf("#");
+        int _plus = (_lastIndexOf + 1);
+        String node = stateURI.substring(_plus);
+        List<String> listElements = Arrays.<String>asList(node.split("%2C"));
+        ArrayList<Actor> actorList = new ArrayList<Actor>();
+        ArrayList<EvaluationStrategy> strategyList = new ArrayList<EvaluationStrategy>();
+        for (final String element : listElements) {
           {
-            final EObject content = abstractNode.getSemanticElement();
-            if ((content instanceof Actor)) {
-              boolean _equals = sections.equals(((Actor)content).getName());
+            int _lastIndexOf_1 = element.lastIndexOf(".");
+            int _plus_1 = (_lastIndexOf_1 + 1);
+            final String elemenName = element.substring(_plus_1);
+            EList<Actor> _actors = urnSpec.getActors();
+            for (final Actor actor : _actors) {
+              String _name = actor.getName();
+              boolean _equals = Objects.equal(elemenName, _name);
               if (_equals) {
-                InputOutput.<String>println("generating actors");
-                return this.generateDiagram(((Actor)content));
+                actorList.add(actor);
+              }
+            }
+            EList<EvaluationStrategy> _strategies = urnSpec.getStrategies();
+            for (final EvaluationStrategy strategy : _strategies) {
+              String _name_1 = strategy.getName();
+              boolean _equals_1 = Objects.equal(elemenName, _name_1);
+              if (_equals_1) {
+                strategyList.add(strategy);
               }
             }
           }
         }
+        int _size = actorList.size();
+        boolean _greaterThan = (_size > 1);
+        if (_greaterThan) {
+          ArrayList<String> actorNames = new ArrayList<String>();
+          for (final Actor actor : actorList) {
+            actorNames.add(actor.getName());
+          }
+          return this.generateErrorDiagram(actorNames);
+        }
+        int _size_1 = strategyList.size();
+        boolean _greaterThan_1 = (_size_1 > 1);
+        if (_greaterThan_1) {
+          ArrayList<String> strategyNames = new ArrayList<String>();
+          for (final EvaluationStrategy strategy : strategyList) {
+            strategyNames.add(strategy.getName());
+          }
+          return this.generateErrorDiagram(strategyNames);
+        }
+        Actor actor_1 = null;
+        int _size_2 = actorList.size();
+        boolean _equals = (_size_2 == 0);
+        if (_equals) {
+          int _size_3 = urnSpec.getActors().size();
+          boolean _equals_1 = (_size_3 == 0);
+          if (_equals_1) {
+            return this.generateEmptyDiagram();
+          }
+          actor_1 = IterableExtensions.<Actor>head(urnSpec.getActors());
+        } else {
+          actor_1 = actorList.get(0);
+        }
+        int _size_4 = strategyList.size();
+        boolean _equals_2 = (_size_4 == 1);
+        if (_equals_2) {
+          EvaluationStrategy _get = strategyList.get(0);
+          TURNEvaluationManager _tURNEvaluationManager = new TURNEvaluationManager(_get);
+          this.evalManager = _tURNEvaluationManager;
+        }
+        return this.generateDiagram(actor_1);
       }
-      return null;
     }
     return null;
   }
@@ -140,6 +191,78 @@ public class TURNDiagramGenerator implements IDiagramGenerator {
     return diagramRoot;
   }
   
+  public SModelRoot generateErrorDiagram(final List<String> string) {
+    SGraph _sGraph = new SGraph();
+    final Procedure1<SGraph> _function = (SGraph it) -> {
+      it.setType("graph");
+      it.setId("turn");
+      ArrayList<SModelElement> _arrayList = new ArrayList<SModelElement>();
+      it.setChildren(_arrayList);
+      final Consumer<LayoutOptions> _function_1 = (LayoutOptions it_1) -> {
+        it_1.setHAlign("left");
+        it_1.setHGap(Double.valueOf(0.0));
+        it_1.setVGap(Double.valueOf(10.0));
+        it_1.setPaddingLeft(Double.valueOf(0.0));
+        it_1.setPaddingRight(Double.valueOf(0.0));
+        it_1.setPaddingTop(Double.valueOf(0.0));
+        it_1.setPaddingBottom(Double.valueOf(0.0));
+      };
+      LayoutOptions _layoutOptions = new LayoutOptions(_function_1);
+      it.setLayoutOptions(_layoutOptions);
+    };
+    final SGraph diagramRoot = ObjectExtensions.<SGraph>operator_doubleArrow(_sGraph, _function);
+    TURNNode error = this.generateDetailedErrorDiagram(string);
+    diagramRoot.getChildren().add(error);
+    return diagramRoot;
+  }
+  
+  public SModelRoot generateEmptyDiagram() {
+    SGraph _sGraph = new SGraph();
+    final Procedure1<SGraph> _function = (SGraph it) -> {
+      it.setType("graph");
+      it.setId("turn");
+      final Consumer<LayoutOptions> _function_1 = (LayoutOptions it_1) -> {
+        it_1.setHAlign("left");
+        it_1.setHGap(Double.valueOf(0.0));
+        it_1.setVGap(Double.valueOf(10.0));
+        it_1.setPaddingLeft(Double.valueOf(0.0));
+        it_1.setPaddingRight(Double.valueOf(0.0));
+        it_1.setPaddingTop(Double.valueOf(0.0));
+        it_1.setPaddingBottom(Double.valueOf(0.0));
+      };
+      LayoutOptions _layoutOptions = new LayoutOptions(_function_1);
+      it.setLayoutOptions(_layoutOptions);
+    };
+    final SGraph diagramRoot = ObjectExtensions.<SGraph>operator_doubleArrow(_sGraph, _function);
+    return diagramRoot;
+  }
+  
+  protected TURNNode generateDetailedErrorDiagram(final List<String> string) {
+    final TURNNode errorModule = this.<TURNNode>configSElement(TURNNode.class, "string", "error");
+    errorModule.setLayout("hbox");
+    final Consumer<LayoutOptions> _function = (LayoutOptions it) -> {
+      it.setPaddingTop(Double.valueOf(10.0));
+      it.setPaddingBottom(Double.valueOf(10.0));
+      it.setPaddingLeft(Double.valueOf(10.0));
+      it.setPaddingRight(Double.valueOf(10.0));
+      it.setResizeContainer(Boolean.valueOf(true));
+    };
+    LayoutOptions _layoutOptions = new LayoutOptions(_function);
+    errorModule.setLayoutOptions(_layoutOptions);
+    String _id = errorModule.getId();
+    String _plus = (_id + "-heading");
+    final SCompartment moduleHeadingCompartment = this.<SCompartment>configSElement(SCompartment.class, _plus, "comp");
+    moduleHeadingCompartment.setLayout("hbox");
+    errorModule.getChildren().add(moduleHeadingCompartment);
+    String _id_1 = errorModule.getId();
+    String _plus_1 = (_id_1 + "-label");
+    final SLabel moduleLabel = this.<SLabel>configSElement(SLabel.class, _plus_1, "heading");
+    String _plus_2 = (string + " selected. Please select only one.");
+    moduleLabel.setText(_plus_2);
+    moduleHeadingCompartment.getChildren().add(moduleLabel);
+    return errorModule;
+  }
+  
   protected SModelElement generateIntentionalElement(final SModelElement parent, final IntentionalElement ie, final String ieType) {
     final SModelElement existingIEModule = this.ieIndex.get(ie);
     if ((existingIEModule != null)) {
@@ -176,10 +299,15 @@ public class TURNDiagramGenerator implements IDiagramGenerator {
       String _plus_1 = ("" + _importance);
       importance = _plus_1;
     }
+    String textDisplay = ((((longName + " ") + "(") + importance) + ")");
+    if ((this.evalManager != null)) {
+      int ieEvalval = this.evalManager.getEvaluation(ie);
+      textDisplay = (((((textDisplay + " ") + "[") + Integer.valueOf(ieEvalval)) + "*") + "]");
+    }
     String _id_1 = ieModule.getId();
     String _plus_2 = (_id_1 + "-label");
     final SLabel moduleLabel = this.<SLabel>configSElement(SLabel.class, _plus_2, "heading");
-    moduleLabel.setText(((((longName + " ") + "(") + importance) + ")"));
+    moduleLabel.setText(textDisplay);
     moduleHeadingCompartment.getChildren().add(moduleLabel);
     return ieModule;
   }
@@ -343,12 +471,6 @@ public class TURNDiagramGenerator implements IDiagramGenerator {
       if (element instanceof SEdge) {
         _matched=true;
         _switchResult = "edge";
-      }
-    }
-    if (!_matched) {
-      if (element instanceof SButton) {
-        _matched=true;
-        _switchResult = "button";
       }
     }
     if (!_matched) {
