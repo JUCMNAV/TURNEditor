@@ -1,0 +1,53 @@
+buildscript {
+	repositories.jcenter()
+	dependencies {
+		classpath 'org.xtext:xtext-gradle-plugin:2.0.8'
+	}
+}
+
+apply from: "${rootDir}/gradle/versions.gradle"
+
+subprojects {
+	repositories {
+		mavenCentral()
+		maven {
+			name 'sonatype-snapshots'
+			url 'https://oss.sonatype.org/content/repositories/snapshots'
+		}
+	}
+	
+	group = 'org.xtext.tColab.turn'
+	version = rootProject.version
+	
+	apply plugin: 'org.xtext.xtend'
+	apply plugin: 'eclipse'
+	apply plugin: 'idea'
+	apply plugin: 'maven-publish'
+	apply plugin: 'signing'
+
+	
+	sourceCompatibility = '1.8'
+
+	java {
+		withJavadocJar()
+		withSourcesJar()
+	}
+
+	tasks.withType(Javadoc) {
+		options.addStringOption('Xdoclint:none', '-quiet')
+		options.tags = [ 'model', 'generated', 'ordered' ] 
+	}
+
+	tasks.withType(GenerateModuleMetadata) {
+		enabled = false
+	}
+
+	apply from: "${rootDir}/gradle/source-layout.gradle"
+
+}
+
+task clean(type: Delete) {
+	group 'Build'
+	description 'Deletes the local repositories'
+	delete 'build'
+}

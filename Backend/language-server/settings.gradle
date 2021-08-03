@@ -1,0 +1,6 @@
+rootProject.name = 'language-server'
+
+
+include 'org.xtext.tColab.turn.diagram'
+include 'org.xtext.tColab.turn'
+include 'org.xtext.tColab.turn.ide'
